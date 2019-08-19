@@ -5,9 +5,51 @@
 html {
   font-size: $mainFontSize;
 }
+.active {
+  border: 1px solid red;
+}
+
 
 h1 {
   color: salmon;
   font-size: rem(32);
   font-family: Nordic;
 }
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  .sum {
+    width: 500px;
+    margin-bottom: 1rem;
+  }
+  .sub {
+    width: 500px;
+    margin-bottom: 1rem;
+  }
+  .multi {
+    margin-bottom: 1rem;
+    width: 500px;
+  }
+  .division {
+    width: 500px;
+  }
+}
+
+
+
+
+
+
+// ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
+
+
+// .items {
+//   display: flex;
+//   .item {
+//     @include size (200px);
+//     background: #eee;
+//     margin: 20px;
+//     box-sizing: border-box;
+//   }
+// }
