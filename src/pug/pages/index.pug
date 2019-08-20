@@ -9,33 +9,49 @@ block content
   section
     h1 I LEARN TO JAVA SCRIPT
     .calculator
-      .sum
+      .calc
         input(type="text" name="num1")
-        | +
+        input(type="button" name="oper" value="+" data-operations="+")
+        input(type="button" name="oper" value="-" data-operations="-")
+        input(type="button" name="oper" value="/" data-operations="/")
+        input(type="button" name="oper" value="*" data-operations="*")
         input(type="text" name="num2")
-        input(type="button" name="sum" value="=")
-        span.res1
+        |  = 
+        span.res
 
-      .sub
-        input(type="text" name="num3")
-        | - 
-        input(type="text" name="num4")
-        input(type="button" name="sub" value="=")
-        span.res2
 
-      .multi
-        input(type="text" name="num5")
-        | *
-        input(type="text" name="num6")
-        input(type="button" name="multi" value="=")
-        span.res3
 
-      .division
-        input(type="text" name="num7")
-        |  / 
-        input(type="text" name="num8")
-        input(type="button" name="division" value="=")
-        span.res4
+
+
+
+//- конченное решение по калькулятору с копипастом(для опыт ан норм)
+      //- .sum
+      //-   input(type="text" name="num1")
+      //-   | +
+      //-   input(type="text" name="num2")
+      //-   input(type="button" name="sum" value="=")
+      //-   span.res1
+
+      //- .sub
+      //-   input(type="text" name="num3")
+      //-   | - 
+      //-   input(type="text" name="num4")
+      //-   input(type="button" name="sub" value="=")
+      //-   span.res2
+
+      //- .multi
+      //-   input(type="text" name="num5")
+      //-   | *
+      //-   input(type="text" name="num6")
+      //-   input(type="button" name="multi" value="=")
+      //-   span.res3
+
+      //- .division
+      //-   input(type="text" name="num7")
+      //-   |  / 
+      //-   input(type="text" name="num8")
+      //-   input(type="button" name="division" value="=")
+      //-   span.res4
 
 
     //- ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
