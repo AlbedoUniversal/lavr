@@ -1,38 +1,28 @@
 window.onload = function () {
 
-  let num1 = document.querySelector('input[name=num1]');
-  let num2 = document.querySelector('input[name=num2]');
-  let result = document.querySelector('.res');
-  let buttons = document.querySelectorAll('input[type=button]');
+  let btn_prev = document.querySelector('.gallery .buttons .prev');
+  let btn_next = document.querySelector('.gallery .buttons .next');
 
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].onclick = function() {
-      let op = this.getAttribute('data-operations');
-      calculations(op);
+  let images = document.querySelectorAll('.gallery .photos img');
+  let i = 0;
+
+  btn_prev.onclick = function() {
+    images[i].classList.remove('showed');
+    i--;
+    if (i < 0) {
+      i = images.length - 1;
     }
+
+    images[i].classList.add('showed');
   }
 
-  function calculations(op) {
-    let a = parseInt(num1.value);
-    let b = parseInt(num2.value);
-    let res;
-
-    if (op === '+') {
-      res = a + b;
-    } 
-    else if (op === '-' ) {
-      res = a - b;
+  btn_next.onclick = function() {
+    images[i].classList.remove('showed');
+    i++;    
+    if (i >= images.length) {
+      i = 0;
     }
-    else if ((op === '/') && (b != 0)) {
-      res = a / b;
-    }
-    else if (op === '*') {
-      res = a * b;
-    }
-    else {
-      res = 'непонятная операция';
-    }
-    result.innerHTML = res;
+    images[i].classList.add('showed');
   }
 }
 
@@ -53,6 +43,76 @@ window.onload = function () {
 
 
 
+
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ЗАПРЕТ ПЕРЕТАСКИВАТИЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ 
+//   let links = document.querySelectorAll('a[target=_blank]');
+
+//   for (let i = 0; i < links.length; i++){
+//     links[i].onclick = confimAway;
+//   }
+
+//   function confimAway() {
+//     if(!confirm('Я не гарантирую, что вы перейдете на безопасный сайт!!! Перейти?')){
+//       return false;
+//     }
+//   }
+
+//   let images = document.querySelectorAll('.gallery img');
+
+//   for (let i = 0; i < images.length; i++) {
+//     images[i].onmousedown = stopMove;
+//     images[i].oncontextmenu = stopMove;
+//   }
+//   function stopMove(e) {
+//     return false;
+//   }
+// }
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// РАБОЧИЙ КАЛЬКУЛЯТОР, С БОЛЕЕ МЕНЕЕ НОРМАЛЬНЫМ КОДОМ
+
+
+//   let num1 = document.querySelector('input[name=num1]');
+//   let num2 = document.querySelector('input[name=num2]');
+//   let result = document.querySelector('.res');
+//   let buttons = document.querySelectorAll('input[type=button]');
+
+//   for (let i = 0; i < buttons.length; i++) {
+//     buttons[i].onclick = function() {
+//       let op = this.getAttribute('data-operations');
+//       calculations(op);
+//     }
+//   }
+
+//   function calculations(op) {
+//     let a = parseInt(num1.value);
+//     let b = parseInt(num2.value);
+//     let res;
+
+//     if (op === '+') {
+//       res = a + b;
+//     } 
+//     else if (op === '-' ) {
+//       res = a - b;
+//     }
+//     else if ((op === '/') && (b != 0)) {
+//       res = a / b;
+//     }
+//     else if (op === '*') {
+//       res = a * b;
+//     }
+//     else {
+//       res = 'непонятная операция';
+//     }
+//     result.innerHTML = res;
+//   }
+// }
 
 
 
@@ -133,20 +193,7 @@ window.onload = function () {
 
 
 
-
-
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
-
-
-
 
 
 // ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
