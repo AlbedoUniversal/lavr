@@ -1,29 +1,4 @@
-window.onload = function () {
-
-  let btn_prev = document.querySelector('.gallery .buttons .prev');
-  let btn_next = document.querySelector('.gallery .buttons .next');
-
-  let images = document.querySelectorAll('.gallery .photos img');
-  let i = 0;
-
-  btn_prev.onclick = function() {
-    images[i].classList.remove('showed');
-    i--;
-    if (i < 0) {
-      i = images.length - 1;
-    }
-
-    images[i].classList.add('showed');
-  }
-
-  btn_next.onclick = function() {
-    images[i].classList.remove('showed');
-    i++;    
-    if (i >= images.length) {
-      i = 0;
-    }
-    images[i].classList.add('showed');
-  }
+window.onload = function (e) {
 }
 
 
@@ -41,6 +16,103 @@ window.onload = function () {
 
 
 
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // slider через классы, один сам меняется, второй по нажатию
+  // let btn_prev = document.querySelector('.gallery .buttons .prev');
+  // let btn_next = document.querySelector('.gallery .buttons .next');
+//   let images = document.querySelectorAll('.gallery--1 .photos img');
+//   let slider = new Slider(images);
+  
+//   document.querySelector('.gallery--1 .buttons .next').onclick = function(){
+//     slider.btn_next();
+//   }
+//   document.querySelector('.gallery--1 .buttons .prev').onclick = function(){
+//     slider.btn_prev();
+//   }
+  
+  
+//   let images2 = document.querySelectorAll('.gallery--2 .photos img');
+//   let slider2 = new Slider(images2);
+//   setInterval(function() {slider2.btn_prev();},1500);
+// }
+  
+// function Slider(images) {
+//   this.images = images;
+//   let i = 0;
+
+//   this.btn_prev = function() {
+//     this.images[i].classList.remove('showed');
+//     i--;
+//     if (i < 0) {
+//       i = this.images.length - 1;
+//     }
+//     this.images[i].classList.add('showed');
+//   }
+
+//   this.btn_next = function() {
+//     this.images[i].classList.remove('showed');
+//     i++;
+//     if (i >= this.images.length) {
+//       i = 0;
+//     }
+//     this.images[i].classList.add('showed');
+//   }
+// };
+
+
+
+
+  // НЕМНОГО О КЛАССАХ
+//   function Cat(name) {
+//     this.name = name;
+//     this.age = 0;
+//     this.weight = 1;
+//     this.eat = function() {
+//       this.weight++;
+//     }
+//     this.run = function() {
+//       this.weight--;
+//     }
+//   }
+
+//   let cat1 = new Cat('Naches');
+//   console.log(cat1);
+// }
+
+
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// SLIDER 
+
+//   let btn_prev = document.querySelector('.gallery .buttons .prev');
+//   let btn_next = document.querySelector('.gallery .buttons .next');
+
+//   let images = document.querySelectorAll('.gallery .photos img');
+//   let i = 0;
+
+//   btn_prev.onclick = function() {
+//     images[i].classList.remove('showed');
+//     i--;
+//     if (i < 0) {
+//       i = images.length - 1;
+//     }
+
+//     images[i].classList.add ('showed');
+//   }
+
+//   btn_next.onclick = function() {
+//     images[i].classList.remove ('showed');
+//     i++;    
+//     if (i >= images.length) {
+//       i = 0;
+//     }
+//     images[i].classList.add ('showed');
+//   }
+// }
 
 
 
