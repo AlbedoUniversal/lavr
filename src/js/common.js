@@ -1,5 +1,141 @@
+
 window.onload = function (e) {
+
 }
+
+
+
+
+// +++++++++++++++++++++++
+// ТИК ТОК хи хи
+  // let tick = true;
+  // function ticker() {
+  //   if (tick) {
+  //     console.log('Tick');
+  //     tick = false;
+  //   }
+  //   else {
+  //     console.log('Tock');
+  //     tick = true;
+  //   }
+  // }
+  // setInterval(ticker, 1500);
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++
+  // НЕМНОГО РАБОТЫ С МЕТОДОМ SETTIMEOUT
+//   function showAlert(){
+//     alert('What are you doing on my pages, little boy?')
+//   }
+
+//   setTimeout(showAlert, 5000);
+// }
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++
+// КООРДИНАТЫ ПО КАРТЕ 
+//   function find() {
+//     let map = document.querySelector('#map');
+//     map.onmousemove = showCoords;
+//   }
+
+//   function showCoords(eventObj) {
+//     let coords = document.querySelector('#coords');
+//     let x = eventObj.clientX;
+//     let y = eventObj.clientY;
+
+//     coords.innerHTML = "Map coordinates: " 
+//     + x + "," + y;
+//   }
+//   find();
+// }
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
+//   function init() {
+//     let images = document.querySelectorAll('.photo .blur');
+//     for(let i = 0; i < images.length; i++) {
+//       images[i].onclick = showAnswer;
+//       images[i].onmousedown = stopMove;
+//       images[i].oncontextmenu = stopMove;
+//     }
+//   };
+
+//   function showAnswer(eventObj) {
+//     let image = eventObj.target;
+//     let name = image.id;
+//     name = "assets/img/" + name + ".jpg";
+//     image.src = name;
+
+//     setTimeout(() => {
+//       image.src = "assets/img/" + image.id + "blur.jpg"
+//     }, 3000);
+//   }
+//   init();
+//   function stopMove(e) {
+//     return false;
+//   }
+// }
+
+
+
+// ПО КЛИКУ ОБЪЕКТ ИСЧЕЗАЕТ И ПЛАВНО ДВИГАЮТСЯ ОСТАЛЬНЫЕН
+//   let allItems = document.querySelectorAll('.items .item');
+
+//   for(let i = 0; i < allItems.length; i++) {
+//     allItems[i].onclick = function() {
+//       fade(this, 1000, function(){
+//         this.style.display = 'none';
+//       });
+//     }
+//   }
+// }
+
+// function fade(elem, t, f) {
+//   let fps = 50;
+//   let time = t || 500;
+//   let steps = time / fps;
+//   let op = 1;
+//   let dO = op / steps;
+
+//   let callback = f || function(){};
+
+//   let timer = setInterval(function() {
+//     op -= dO;
+//     elem.style.opacity = op;
+//     steps--;
+//     if (steps === 0) {
+//       clearInterval(timer);
+//       callback.call(elem);
+//     }
+//   }, (1000 / fps));
+// }
+
+
+
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
+// РАНДОМНОЕ ПОЯВЛЕНЕ КРАСНЫХ РАМОК НА БЛОКАХ ОЧ ПРИКОЛЬНО
+//   let items = document.querySelectorAll('.items .item');
+//   function activeItem(){
+//     this.classList.toggle('active1');
+//   }
+
+//   setInterval(function(){
+//     let randomNumber = mtRand(0, items.length - 1);
+//     items[randomNumber]
+//     activeItem.call(items[randomNumber]);
+//     console.log(randomNumber);
+//     activeItem
+//   }, 300);
+// }
+
+// function mtRand(min, max){
+//   return Math.floor(Math.random() * (max-min + 1));
+// }
 
 
 
