@@ -1,7 +1,157 @@
 
-window.onload = function (e) {
+// window.onload = function (e) {
+// }
 
-}
+
+
+
+
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++
+// ХУЕТА ПРО ПАССАЖИРОВ И ОЧЕНЬ ТУПОЙ ПРИМЕР
+  // let passengers = [
+  //   { name: 'Aleksander Zalup', paid: true, ticket: 'coach' },
+  //   { name: 'Dima Kilop', paid: true, ticket: 'firstclass' },
+  //   { name: 'Vitya AK47', paid: true, ticket: 'firstclass' },
+  //   { name: 'Oleg Mishkin', paid: true, ticket: 'coach' }
+  // ];
+
+  // function checkNoFlylist(passenger) {
+  //   return (passenger.name === 'Vitya AK47');
+  // }
+
+  // function checkNotPaid(passenger) {
+  //   return (!passenger.paid);
+  // }
+
+  // function processPassengers(passengers, testFunction) {
+  //   for (let i = 0; i < passengers.length; i++) {
+  //     if (testFunction(passengers[i])) {
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // }
+
+
+  // let allCanFly = processPassengers(passengers, checkNoFlylist);
+  // if (!allCanFly) {
+  //   console.log("The plane can't take off: we have a passenger on the no-fly-list.");
+  // }
+
+  // let allPaid = processPassengers(passengers, checkNotPaid);
+  // if (!allPaid) {
+  //   console.log("The plane can't take off: not everyone has paid.");
+  // }
+
+  // function printPassenger(passenger) {
+  //   let message = passenger.name;
+  //   if (passenger.paid === true) {
+  //     message = `${message} has paid`;
+  //   } else {
+  //     message = `${message} has not paid`;
+  //   }
+  //   console.log(message);
+  //   return false;
+  // }
+
+  // processPassengers(passengers, printPassenger);
+
+
+
+
+  // function createDrinkOrder(passenger) {
+
+  //   let orderFunction;
+
+  //   if (passenger.ticket === 'firstclass') {
+  //     orderFunction = function() {
+  //       console.log('Would you like a cocktail or wine');
+  //     }
+  //   }
+  //   else {
+  //     orderFunction = function () {
+  //       console.log('Your choice is cola or water.');
+  //     }
+  //   }
+  //   return orderFunction;
+  // }
+
+
+
+  // function serveCustomer(passenger) {
+  //   let getDrinkOrderFunction = createDrinkOrder(passenger);
+  //   getDrinkOrderFunction();
+  //   getDrinkOrderFunction();
+  //   getDrinkOrderFunction();
+  //   getDrinkOrderFunction();
+  //   getDrinkOrderFunction();
+  // }
+
+  // function servePassengers(passengers) {
+  //   for (var i = 0; i < passengers.length; i++) {
+  //     serveCustomer(passengers[i]);
+  //   }
+  // }
+
+  // servePassengers(passengers);
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
+  // НЕБОЛЬШОЙ ПРИМЕРЧИК ПРО ФУНКЦИИ ВЫСШЕГО ПОРЯДКА, КОТОРЫЕ ПЕРЕДАЮТСЯ ИЗ ФУНКЦИИ В ФУНКЦИЮ
+  // function sayIt(translator) {
+  //   var phrase = translator("Hello");
+  //   alert(phrase);
+  // }
+  // function hawaiianTranslator(word) {
+  //   if (word === "Hello") return "Aloha";
+  //   if (word === "Goodbye") return "Aloha";
+  // }
+  // sayIt(hawaiianTranslator);
+
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++
+// ПОБЫЛУЕМСЯ С РЕСАЙЗОМ СТРАНИЦЫ ХИ ХИ
+// window.onresize = function resize() {
+//   let h = document.querySelector('h1');
+//   h.innerHTML = h.innerHTML + 'that tickles';
+// }
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++
+// ВСЯ ТАЖЕ ИГРА С КАРТИКАМИ НО ПО НАВЕДЕНИЮ МЫШИ
+//      function init() {
+//         let images = document.querySelectorAll('.photo .blur');
+//         for(let i = 0; i < images.length; i++) {
+//           images[i].onmouseover = showAnswer;
+//           images[i].onmouseout = reblur;
+//           // images[i].onmouseout = stopMove;
+//         }
+//       };
+    
+//       function showAnswer(eventObj) {
+//         let image = eventObj.target;
+//         let name = image.id;
+//         name = `assets/img/${name}.jpg`;
+//         image.src = name;
+  
+//       }
+//       init();
+
+//       function reblur(eventObj){
+//         let image = eventObj.target;
+//         let name = image.id;
+//         name = `assets/img/${name}blur.jpg`;
+//         console.log(name);
+//         image.src = name;
+//       }
+// }
 
 
 
