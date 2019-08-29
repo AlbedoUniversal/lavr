@@ -1,6 +1,144 @@
 
-// window.onload = function (e) {
+window.onload = function () {
+
+  let todoList = [];
+
+  // let text = document.querySelector('.gettext');
+
+  let enter = document.querySelector('.add');
+
+  let list = document.querySelector('.list');
+
+
+  enter.onclick = function() {
+    let text = document.querySelector('.gettext').value;
+    let objectPunkt = {};
+    objectPunkt.todo = text;
+    objectPunkt.check = false;
+    let i = todoList.length;
+    todoList[i] = objectPunkt;
+    ist();
+  }
+
+  function ist() {
+    let li = document.createElement('li');
+    
+    list.appendChild(li);
+    console.log(li);
+  //list.innerHTML = li; 
+  }
+
+
+
+
+
+
+
+
+  // console.log(text);
+  // console.log(enter);
+  // console.log(list);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// МЕТОД СОРТ ДЛЯ МАССИВОВ ПЕРЕБОР 
+// let products = [  { name:"Grapefruit", calories: 170, color: "red", sold: 8200 },
+//                   { name:"Orange", calories: 160, color: "orange", sold: 12101 },
+//                   { name:"Cola", calories: 210, color: "caramel", sold: 25412 },
+//                   { name:"Diet Cola", calories: 0, color: "caramel", sold: 43922 },
+//                   { name:"Lemon", calories: 200, color: "clear", sold: 14983 },
+//                   { name:"Raspberry", calories: 180, color: "pink", sold: 9427 },
+//                   { name:"Root Beer", calories: 200, color: "caramel", sold: 9909 },
+//                   { name:"Root Beer", calories: 200, color: "caramel", sold: 9909 },
+//                   { name: "Water", calories: 0, color: "clear", sold: 62123 }
+
+//                 ];
+
+
+// function compareSold (colaA, colaB) {
+//   if (colaA.sold > colaB.sold) {
+//     return 1;
+//   } else if (colaA.sold === colaB.sold) {
+//     return 0;
+//   } else {
+//     return -1;
+//   }
 // }
+
+// function compareCalories (colaA, colaB) {
+//   if (colaA.calories > colaB.calories) {
+//     return 1;
+//   } else if (colaA.calories === colaB.calories) {
+//     return 0;
+//   } else {
+//     return -1;
+//   }
+// }
+
+// function compareNames (colaA, colaB) {
+//   if (colaA.name > colaB.name) {
+//     return 1;
+//   } else if (colaA.name === colaB.name) {
+//     return 0;
+//   } else {
+//     return -1;
+//   }
+// }
+
+
+
+// products.sort(compareSold);
+// console.log(products.sort(compareSold));
+// products.sort(compareCalories);
+// console.log(products.sort(compareCalories));
+// products.sort(compareNames);
+// console.log(products.sort(compareNames));
+
 
 
 
@@ -306,9 +444,12 @@
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // slider через классы, один сам меняется, второй по нажатию
-  // let btn_prev = document.querySelector('.gallery .buttons .prev');
-  // let btn_next = document.querySelector('.gallery .buttons .next');
+//   let btn_prev = document.querySelector('.gallery .buttons .prev');
+//   let btn_next = document.querySelector('.gallery .buttons .next');
 //   let images = document.querySelectorAll('.gallery--1 .photos img');
+
+
+
 //   let slider = new Slider(images);
   
 //   document.querySelector('.gallery--1 .buttons .next').onclick = function(){
@@ -317,13 +458,23 @@
 //   document.querySelector('.gallery--1 .buttons .prev').onclick = function(){
 //     slider.btn_prev();
 //   }
+
+
+
+
   
   
 //   let images2 = document.querySelectorAll('.gallery--2 .photos img');
 //   let slider2 = new Slider(images2);
 //   setInterval(function() {slider2.btn_prev();},1500);
-// }
+
   
+
+
+
+
+
+
 // function Slider(images) {
 //   this.images = images;
 //   let i = 0;
