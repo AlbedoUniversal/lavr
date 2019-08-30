@@ -1,44 +1,58 @@
 
 window.onload = function () {
 
-  let todoList = [];
-
-  // let text = document.querySelector('.gettext');
-
-  let enter = document.querySelector('.add');
-
-  let list = document.querySelector('.list');
-
-
+  const todoList = [];
+  const enter = document.querySelector('.add');
+  const list = document.querySelector('.list');
+  let text = document.querySelector('.gettext');
+  const clearAll = document.getElementById('clearAll');
+  
   enter.onclick = function() {
-    let text = document.querySelector('.gettext').value;
-    let objectPunkt = {};
-    objectPunkt.todo = text;
-    objectPunkt.check = false;
-    let i = todoList.length;
-    todoList[i] = objectPunkt;
-    ist();
+    if (text.value) {
+      let tasks = {};
+      tasks.todo = text.value;
+      tasks.check = false;
+      let i = todoList.length;
+      todoList[i] = tasks;
+      createLi();
+      // удаяем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
+      clearAll.removeAttribute('disabled');
+    } else {
+      alert('Empty field - this is not a task');
+    }
   }
+  
 
-  function ist() {
+  function createLi() {
     let li = document.createElement('li');
-    
+    li.classList.add('item');
+    li.innerHTML = text.value;
     list.appendChild(li);
-    console.log(li);
-  //list.innerHTML = li; 
+    list.classList.add('activeList');
+
+    let div = document.createElement('div');
+    li.appendChild(div);
+    div.classList.add('removeList');
+    div.onclick = function() {
+      li.remove();
+    }
+      
+    let button = document.createElement('button');
+    button.classList.add('edit');
+    button.innerText = 'редактировать поле';
+    li.appendChild(button);
+
   }
+  
+  
+  clearAll.addEventListener('click', function clearLastItem() {
+    let allChilds = document.querySelectorAll('.list .item');
 
-
-
-
-
-
-
-
-  // console.log(text);
-  // console.log(enter);
-  // console.log(list);
-
+    for (let listItem of allChilds) {
+      listItem.remove();
+    } 
+    clearAll.setAttribute('disabled', 'disabled');
+  });
 }
 
 

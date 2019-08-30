@@ -20,12 +20,57 @@ h1 {
 
 .add {
   cursor: pointer;
+  background-color: rgb(21, 49, 139);
+  border: 2px solid gold;
+  font-family: Nordic;
+  font-weight: bold;
+  color: gold;
+  padding: 0.4rem 0.5rem;
 }
 .list {
-  width: 300px;
-  // height: 500px;
+  width: 500px;
   background-color: #eee;
-  border: 3px solid blue;
+  &.activeList {
+    padding: 20px;
+    border: 3px solid orange;
+  }
+  .item {
+    list-style: none;
+    background-image: url(/assets/img/o.png); /* Параметры фона */
+    background-repeat: no-repeat;
+    background-size: 3%;
+    padding-left: 24px; /* Смещаем текст вправо */ 
+    margin-bottom: 1rem;
+    display: flex;
+    .removeList {
+      cursor: pointer;
+      position: relative;
+      margin-left: 1rem;
+      width: 10px;
+      height: 10px;
+      &::before {
+        content: "";
+        width: 3px;
+        height: 20px;
+        position: absolute;
+        transform: rotate(45deg);
+        background-color: red;
+        border-radius: 50%;
+      }
+      &::after {
+        content: "";
+        width: 3px;
+        height: 17px;
+        position: absolute;
+        transform: rotate(-45deg);
+        background-color: red;
+        border-radius: 50%;
+      }
+    }
+    .edit {
+      margin-left: 1rem;
+    }
+  }
 }
 
 
