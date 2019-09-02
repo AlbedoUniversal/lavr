@@ -1,0 +1,294 @@
+@import 'utils/vars';
+@import 'utils/mixins';
+@import 'utils/fonts';
+
+html {
+  font-size: $mainFontSize;
+}
+.active {
+  border: 1px solid red;
+}
+
+
+h1 {
+  color: salmon;
+  font-size: rem(32);
+  font-family: Nordic;
+}
+
+
+
+.add {
+  cursor: pointer;
+  background-color: rgb(21, 49, 139);
+  border: 2px solid gold;
+  font-family: Nordic;
+  font-weight: bold;
+  color: gold;
+  padding: 0.4rem 0.5rem;
+}
+.editt {
+  cursor: pointer;
+  background-color: rgb(13, 15, 22);
+  border: 2px solid rgb(134, 119, 35);
+  font-family: Nordic;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  padding: 0.4rem 0.5rem;
+}
+.list {
+  width: 500px;
+  background-color: #eee;
+  &.activeList {
+    padding: 20px;
+    border: 3px solid orange;
+  }
+  .item {
+    list-style: none;
+    background-image: url(/assets/img/o.png); /* Параметры фона */
+    background-repeat: no-repeat;
+    background-size: 3%;
+    padding-left: 24px; /* Смещаем текст вправо */ 
+    margin-bottom: 1rem;
+    display: flex;
+    .removeList {
+      cursor: pointer;
+      position: relative;
+      margin-left: 1rem;
+      width: 10px;
+      height: 10px;
+      &::before {
+        content: "";
+        width: 3px;
+        height: 20px;
+        position: absolute;
+        transform: rotate(45deg);
+        background-color: red;
+        border-radius: 50%;
+      }
+      &::after {
+        content: "";
+        width: 3px;
+        height: 17px;
+        position: absolute;
+        transform: rotate(-45deg);
+        background-color: red;
+        border-radius: 50%;
+      }
+    }
+    .edit {
+      margin-left: 1rem;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
+// .photo {
+//   display: flex;
+//   flex-wrap: wrap;
+//   .blur {
+//     width: 300px;
+//     height: 300px;
+//     margin: 10px;
+//     cursor: pointer;
+//   }
+// }
+
+
+
+
+// ПО КЛИКУ ОБЪЕКТ ИСЧЕЗАЕТ И ВСЕ ДВИГАЕТСЯ КАК НАДО
+// .items {
+//   display: flex;
+//   flex-wrap: wrap;
+//   .item {
+//     width: 400px;
+//     height: 400px;
+//     background-color: #eee;
+//     // border: 3px solid transparent;
+//     box-sizing: border-box;
+//     margin: 10px;
+//     padding: 10px;
+//   }
+// }
+
+
+
+
+// РАНДОМНОЕ ПОЯВЛЕНЕ КРАСНЫХ РАМОК НА БЛОКАХ ОЧ ПРИКОЛЬНО
+// .items {
+//   display: flex;
+//   flex-wrap: wrap;
+//   .item {
+//     width: 400px;
+//     height: 400px;
+//     background-color: #eee;
+//     // border: 3px solid transparent;
+//     box-sizing: border-box;
+//     margin: 10px;
+//     padding: 10px;
+//   }
+// }
+// .active1 {
+//   border: 3px solid red;
+// }
+
+
+
+
+
+
+
+// .gallery {
+//   width: 860px;
+//   margin: 0 auto;
+//   text-align: center;
+//   .photos {
+//     height: 640px;
+//     position: relative;
+//     img {
+//       width: 100%;
+//       height: 400px;
+//       position: absolute;
+//       opacity: 0;
+//       left: 0;
+//       transition: all 0.7s ease;
+//     }
+//     .showed {
+//     opacity: 1;
+//     }
+//   }
+// }
+
+
+// SLIDER
+// .gallery {
+//   width: 860px;
+//   margin: 0 auto;
+//   text-align: center;
+//   .photos {
+//     height: 640px;
+//     position: relative;
+//     img {
+//       width: 100%;
+//       height: 400px;
+//       position: absolute;
+//       opacity: 0;
+//       left: 0;
+//       transition: all 0.7s ease;
+//     }
+//     .showed {
+//     opacity: 1;
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ЗАПРЕТ ПЕРЕТАСКИВАТЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ 
+// .gallery img {
+//   width: 400px;
+// }
+
+
+
+// РАБОЧИЙ КАЛЬКУЛЯТОР
+// .calculator {
+//   display: flex;
+//   flex-direction: column;
+//   .sum {
+//     width: 500px;
+//     margin-bottom: 1rem;
+//   }
+//   .sub {
+//     width: 500px;
+//     margin-bottom: 1rem;
+//   }
+//   .multi {
+//     margin-bottom: 1rem;
+//     width: 500px;
+//   }
+//   .division {
+//     width: 500px;
+//   }
+// }
+
+
+
+
+
+
+// ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
+
+
+// .items {
+//   display: flex;
+//   .item {
+//     @include size (200px);
+//     background: #eee;
+//     margin: 20px;
+//     box-sizing: border-box;
+//   }
+// }

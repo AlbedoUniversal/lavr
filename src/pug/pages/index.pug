@@ -1,0 +1,192 @@
+extends ../layout/main
+
+block variables
+  - var title = 'Page 1'
+  - var description = 'Тестовая сборка webpack 4'
+  - var pageClass = 'huscvarna'
+
+block content
+  section
+    h1 I LEARN TO JAVA SCRIPT
+
+    input(class="gettext" type="text")
+    input(class="add" type="button" value="add new task")
+    ul.list
+    button(id="clearAll" disabled) Clear all
+
+
+
+
+
+
+
+    //- КООРДИНАТЫ ПО КАРТЕ
+    //- img(id="map" src="assets/img/map.jpg")
+    //- p(id="coords") Move mouse over map to find coordinates...
+
+
+
+    //- ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
+    //- .photo
+    //-   img(class="blur" id="five" src="assets/img/fiveblur.jpg")
+    //-   img(class="blur" id="four" src="assets/img/fourblur.jpg")
+    //-   img(class="blur" id="one" src="assets/img/oneblur.jpg")
+    //-   img(class="blur" id="three" src="assets/img/threeblur.jpg")
+    //-   img(class="blur" id="two" src="assets/img/twoblur.jpg")
+    //-   img(class="blur" id="zero" src="assets/img/zeroblur.jpg")
+
+
+    //- ПО КЛИКУ УБИРАЮТСЯ ЭЛЕМЕНТЫ 
+    //- .items
+    //-   .item.active1 1
+    //-   .item 2
+    //-   .item 3
+    //-   .item 4
+    //-   .item 5
+    //-   .item 6
+    //-   .item 7
+    //-   .item 8
+
+
+
+
+    //- РАНДОМНОЕ ПОЯВЛЕНЕ КРАСНЫХ РАМОК НА БЛОКАХ ОЧ ПРИКОЛЬНО
+    //- .items
+    //-   .item.active1 1
+    //-   .item 2
+    //-   .item 3
+    //-   .item 4
+    //-   .item 5
+    //-   .item 6
+    //-   .item 7
+    //-   .item 8
+
+
+
+
+    //- .gallery.gallery--1
+    //-   .photos
+    //-     img(src="assets/img/1.jpg" class="showed")
+    //-     img(src="assets/img/2.jpg")
+    //-     img(src="assets/img/3.jpeg")
+    //-     img(src="assets/img/4.jpg")
+    //-     img(src="assets/img/5.jpg")
+    //-     img(src="assets/img/6.jpeg")
+    //-     img(src="assets/img/7.jpeg")
+    //-     img(src="assets/img/8.jpg")
+    //-   .buttons
+    //-     input(type="button" value="назад" class="prev")
+    //-     input(type="button" value="вперед" class="next")
+
+    //- .gallery.gallery--2
+    //-   .photos
+    //-     img(src="assets/img/1.jpg" class="showed")
+    //-     img(src="assets/img/2.jpg")
+    //-     img(src="assets/img/3.jpeg")
+    //-     img(src="assets/img/4.jpg")
+    //-     img(src="assets/img/5.jpg")
+    //-     img(src="assets/img/6.jpeg")
+    //-     img(src="assets/img/7.jpeg")
+    //-     img(src="assets/img/8.jpg")
+    //-   .buttons
+    //-     input(type="button" value="назад" class="prev")
+    //-     input(type="button" value="вперед" class="next")
+
+
+
+//- SLIDER
+    //- .gallery
+    //-   .photos
+    //-     img(src="assets/img/1.jpg" class="showed")
+    //-     img(src="assets/img/2.jpg")
+    //-     img(src="assets/img/3.jpeg")
+    //-     img(src="assets/img/4.jpg")
+    //-     img(src="assets/img/5.jpg")
+    //-     img(src="assets/img/6.jpeg")
+    //-     img(src="assets/img/7.jpeg")
+    //-     img(src="assets/img/8.jpg")
+    //-   .buttons
+    //-     input(type="button" value="назад" class="prev")
+    //-     input(type="button" value="вперед" class="next")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //- ЗАПРЕТ ПЕРЕТАСИКВАТЬ ФОТОРАФИИ И СОХРАНЯТЬ ИХ 
+    //- .menu
+    //-   a(href="https://yandex.ru" target="_blank") Яндекс 
+    //-   a(href="https://google.ru" target="_blank") Гугл 
+    //-   a(href="https://mail.ru" target="_blank") Мэйл 
+    //- .gallery
+    //-   img(src="assets/img/cloud2.png")
+    //-   img(src="assets/img/cloud2.png")
+
+
+
+
+
+
+    //- РАБОЧИЙ КАЛЬКУЛЯТОР
+    //- .calculator
+    //-   .calc
+    //-     input(type="text" name="num1")
+    //-     input(type="button" name="oper" value="+" data-operations="+")
+    //-     input(type="button" name="oper" value="-" data-operations="-")
+    //-     input(type="button" name="oper" value="/" data-operations="/")
+    //-     input(type="button" name="oper" value="*" data-operations="*")
+    //-     input(type="text" name="num2")
+    //-     |  = 
+    //-     span.res
+
+
+
+
+
+
+//- конченное решение по калькулятору с копипастом(для опыт ан норм)
+      //- .sum
+      //-   input(type="text" name="num1")
+      //-   | +
+      //-   input(type="text" name="num2")
+      //-   input(type="button" name="sum" value="=")
+      //-   span.res1
+
+      //- .sub
+      //-   input(type="text" name="num3")
+      //-   | - 
+      //-   input(type="text" name="num4")
+      //-   input(type="button" name="sub" value="=")
+      //-   span.res2
+
+      //- .multi
+      //-   input(type="text" name="num5")
+      //-   | *
+      //-   input(type="text" name="num6")
+      //-   input(type="button" name="multi" value="=")
+      //-   span.res3
+
+      //- .division
+      //-   input(type="text" name="num7")
+      //-   |  / 
+      //-   input(type="text" name="num8")
+      //-   input(type="button" name="division" value="=")
+      //-   span.res4
+
+
+    //- ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
+    //- .items
+    //-   .item(data-price="2500") Товар 1
+    //-   .item(data-price="2000") Товар 2
+    //-   .item(data-price="1500") Товар 3
+    //-   .item(data-price="2500") Товар 4
+    //- .value 0
