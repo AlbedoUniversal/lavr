@@ -1,6 +1,6 @@
-@import 'utils/vars';
-@import 'utils/mixins';
-@import 'utils/fonts';
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
 
 html {
   font-size: $mainFontSize;
@@ -9,14 +9,14 @@ html {
   border: 1px solid red;
 }
 
-
 h1 {
   color: salmon;
   font-size: rem(32);
   font-family: Nordic;
 }
-
-
+p {
+  margin: 0;
+}
 
 .add {
   cursor: pointer;
@@ -26,6 +26,22 @@ h1 {
   font-weight: bold;
   color: gold;
   padding: 0.4rem 0.5rem;
+  &.edit-none {
+    display: none;
+  }
+}
+.save {
+  cursor: pointer;
+  background-color: rgb(9, 31, 8);
+  border: 2px solid gold;
+  font-family: Nordic;
+  font-weight: bold;
+  color: rgb(158, 41, 158);
+  padding: 0.4rem 0.5rem;
+  display: none;
+  &.edit-block {
+    display: inline-block;
+  }
 }
 .list {
   width: 500px;
@@ -39,7 +55,7 @@ h1 {
     background-image: url(/assets/img/o.png); /* Параметры фона */
     background-repeat: no-repeat;
     background-size: 3%;
-    padding-left: 24px; /* Смещаем текст вправо */ 
+    padding-left: 24px; /* Смещаем текст вправо */
     margin-bottom: 1rem;
     display: flex;
     .removeList {
@@ -73,53 +89,7 @@ h1 {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
+// ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
 // .photo {
 //   display: flex;
 //   flex-wrap: wrap;
@@ -130,9 +100,6 @@ h1 {
 //     cursor: pointer;
 //   }
 // }
-
-
-
 
 // ПО КЛИКУ ОБЪЕКТ ИСЧЕЗАЕТ И ВСЕ ДВИГАЕТСЯ КАК НАДО
 // .items {
@@ -148,9 +115,6 @@ h1 {
 //     padding: 10px;
 //   }
 // }
-
-
-
 
 // РАНДОМНОЕ ПОЯВЛЕНЕ КРАСНЫХ РАМОК НА БЛОКАХ ОЧ ПРИКОЛЬНО
 // .items {
@@ -169,12 +133,6 @@ h1 {
 // .active1 {
 //   border: 3px solid red;
 // }
-
-
-
-
-
-
 
 // .gallery {
 //   width: 860px;
@@ -196,7 +154,6 @@ h1 {
 //     }
 //   }
 // }
-
 
 // SLIDER
 // .gallery {
@@ -220,30 +177,10 @@ h1 {
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ЗАПРЕТ ПЕРЕТАСКИВАТЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ 
+// ЗАПРЕТ ПЕРЕТАСКИВАТЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ
 // .gallery img {
 //   width: 400px;
 // }
-
-
 
 // РАБОЧИЙ КАЛЬКУЛЯТОР
 // .calculator {
@@ -266,13 +203,7 @@ h1 {
 //   }
 // }
 
-
-
-
-
-
 // ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
-
 
 // .items {
 //   display: flex;
