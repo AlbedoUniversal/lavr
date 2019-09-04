@@ -14,11 +14,8 @@ h1 {
   font-size: rem(32);
   font-family: Nordic;
 }
-p {
-  margin: 0;
-}
 
-.add {
+.addTask {
   cursor: pointer;
   background-color: rgb(21, 49, 139);
   border: 2px solid gold;
@@ -26,24 +23,18 @@ p {
   font-weight: bold;
   color: gold;
   padding: 0.4rem 0.5rem;
-  &.edit-none {
-    display: none;
-  }
 }
-.save {
+
+.saveTask {
   cursor: pointer;
-  background-color: rgb(9, 31, 8);
+  background-color: rgb(199, 182, 33);
   border: 2px solid gold;
   font-family: Nordic;
   font-weight: bold;
-  color: rgb(158, 41, 158);
+  color: rgb(12, 94, 216);
   padding: 0.4rem 0.5rem;
-  display: none;
-  &.edit-block {
-    display: inline-block;
-  }
 }
-.list {
+.listTasks {
   width: 500px;
   background-color: #eee;
   &.activeList {
