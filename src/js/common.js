@@ -1,98 +1,117 @@
-window.onload = () => {
-  const todoList = [];
+const todoList = [];
 
-  const addTask = document.querySelector(".addTask");
+const addTask = document.querySelector(".addTask");
 
-  const listAllTasks = document.querySelector(".listTasks");
+const listAllTasks = document.querySelector(".listTasks");
 
-  const userText = document.querySelector(".textFieldForTask");
+const userText = document.querySelector(".textFieldForTask");
 
-  const clearAll = document.getElementById("clearAll");
+const clearAll = document.getElementById("clearAll");
 
-  let currentEdit = 0;
+let currentEdit = 0;
 
-  addTask.addEventListener("click", () => {
-    if (userText.value.trim().length == 0 && userText.value.trim() != null) {
-      alert("Empty field - this is not a task");
-    } else if (addTask.classList.contains("saveTask")) {
-      // buttonRemove.removeAttribute("disabled");
-      saveTask(currentEdit);
-    } else {
-      const task = {}; //создали объект на каждую задачу;
-      task.name = userText.value.trim(); // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
-      task.check = false; // 2-оe св-во об, для будущего задела на чекнуто ли?
-      todoList.push(task); // индекс массива приравнивается к объекту
-      createTask(todoList.length - 1);
-      clearAll.removeAttribute("disabled"); // удаляем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
-    }
-  });
-
-  // создаем новый таск
-  function createTask(id) {
-    const newLi = document.createElement("li");
-    const buttonRemove = document.createElement("button");
-    const buttonEdit = document.createElement("button");
-    const textSpan = document.createElement("span");
-    id = `task-${id}`;
-
-    listAllTasks.classList.add("activeList");
-    listAllTasks.appendChild(newLi);
-
-    newLi.setAttribute("id", id);
-    newLi.classList.add("item");
-
-    newLi.appendChild(textSpan);
-    textSpan.innerText = userText.value;
-
-    buttonRemove.innerText = "delete";
-    newLi.appendChild(buttonRemove);
-
-    buttonEdit.innerText = "edit this task";
-    newLi.appendChild(buttonEdit);
-
-    buttonRemove.addEventListener("click", () => {
-      deleteTask(id);
-    });
-
-    buttonEdit.addEventListener("click", () => {
-      // buttonRemove.toggleAttribute("disabled", "disabled");
-      editTask(id);
-    });
-  }
-
-  // удалить таск
-  function deleteTask(id) {
-    listAllTasks.querySelector(`#${id}`).remove();
-    console.log(listAllTasks);
-  }
-
-  // редактировать таск
-  function editTask(id) {
-    let onlyTaskText = document.querySelector(`#${id} > span`).innerText;
-    addTask.classList.add("saveTask");
-    addTask.value = "save this task";
-    userText.value = onlyTaskText;
-    currentEdit = id;
-  }
-  // сохранить таск
-  function saveTask(id) {
-    document.querySelector(`#${id} > span`).innerText = userText.value;
-    addTask.classList.remove("saveTask");
-    addTask.classList.add("addTask");
-    addTask.value = "add new task";
-  }
-
-  // очистить все поле ul
-  clearAll.addEventListener("click", () => {
-    let allChilds = document.querySelectorAll(".listTasks .item");
-
-    for (let listAllTasks of allChilds) {
-      listAllTasks.remove();
-    }
+addTask.addEventListener("click", () => {
+  if (userText.value.trim().length == 0 && userText.value.trim() != null) {
+    alert("Empty field - this is not a task");
+  } else if (addTask.classList.contains("saveTask") && bruteForce()) {
+    alert("ты пидор такое уже есть в списке");
+  } else if (addTask.classList.contains("saveTask")) {
+    saveTask(currentEdit);
+    let btnRemove2 = document.querySelector(`#${currentEdit} > .btn-remove`);
+    btnRemove2.style.display = "block";
+  } else if (bruteForce()) {
+    alert("уже есть такой сука блядь");
     userText.value = "";
-    clearAll.setAttribute("disabled", "disabled");
+  } else {
+    const task = {}; //создали объект на каждую задачу;
+    task.name = userText.value.trim(); // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
+    task.check = false; // 2-оe св-во об, для будущего задела на чекнуто ли?
+    todoList.push(task); // индекс массива приравнивается к объекту
+    createTask(todoList.length - 1);
+    clearAll.removeAttribute("disabled"); // удаляем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
+  }
+});
+
+// создаем новый таск
+function createTask(id) {
+  const newLi = document.createElement("li");
+  const buttonRemove = document.createElement("button");
+  const buttonEdit = document.createElement("button");
+  const textSpan = document.createElement("span");
+  id = `task-${id}`;
+
+  listAllTasks.classList.add("activeList");
+  listAllTasks.appendChild(newLi);
+
+  newLi.setAttribute("id", id);
+  newLi.classList.add("item");
+
+  newLi.appendChild(textSpan);
+  textSpan.innerText = userText.value;
+
+  buttonRemove.innerText = "delete";
+  buttonRemove.classList.add("btn-remove");
+  newLi.appendChild(buttonRemove);
+
+  buttonEdit.innerText = "edit this task";
+  buttonEdit.classList.add("btn-edit");
+  newLi.appendChild(buttonEdit);
+
+  buttonRemove.addEventListener("click", () => {
+    deleteTask(id);
   });
-};
+
+  buttonEdit.addEventListener("click", () => {
+    // buttonRemove.toggleAttribute("disabled", "disabled");
+    editTask(id);
+  });
+}
+
+// удалить таск
+function deleteTask(id) {
+  listAllTasks.querySelector(`#${id}`).remove();
+  console.log(listAllTasks);
+}
+
+// редактировать таск
+function editTask(id) {
+  let onlyTaskText = document.querySelector(`#${id} > span`).innerText;
+  let btnRemove = document.querySelector(`#${id} > .btn-remove`);
+
+  addTask.classList.add("saveTask");
+  addTask.value = "save this task";
+  userText.value = onlyTaskText;
+  btnRemove.style.display = "none";
+  currentEdit = id;
+}
+// сохранить таск
+function saveTask(id) {
+  document.querySelector(`#${id} > span`).innerText = userText.value;
+  addTask.classList.remove("saveTask");
+  addTask.classList.add("addTask");
+  addTask.value = "add new task";
+}
+
+// перебор всех детей на поиск одинакового текста внутри листа
+function bruteForce() {
+  let childrensList = document.querySelectorAll(".listTasks .item > span");
+  for (let item of childrensList) {
+    if (userText.value === item.innerText) {
+      return true;
+    }
+  }
+}
+
+// очистить все поле ul
+clearAll.addEventListener("click", () => {
+  let allChilds = document.querySelectorAll(".listTasks .item");
+
+  for (let i of allChilds) {
+    i.remove();
+  }
+  userText.value = "";
+  clearAll.setAttribute("disabled", "disabled");
+});
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // МЕТОД СОРТ ДЛЯ МАССИВОВ ПЕРЕБОР
