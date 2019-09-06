@@ -47,7 +47,7 @@ function createTask(id) {
   newLi.classList.add("item");
 
   newLi.appendChild(textSpan);
-  textSpan.innerText = userText.value;
+  textSpan.innerText = userText.value.trim();
 
   buttonRemove.innerText = "delete";
   buttonRemove.classList.add("btn-remove");
@@ -86,7 +86,7 @@ function editTask(id) {
 }
 // сохранить таск
 function saveTask(id) {
-  document.querySelector(`#${id} > span`).innerText = userText.value;
+  document.querySelector(`#${id} > span`).innerText = userText.value.trim();
   addTask.classList.remove("saveTask");
   addTask.classList.add("addTask");
   addTask.value = "add new task";
@@ -96,7 +96,7 @@ function saveTask(id) {
 function bruteForce() {
   let childrensList = document.querySelectorAll(".listTasks .item > span");
   for (let item of childrensList) {
-    if (userText.value === item.innerText) {
+    if (userText.value.trim() === item.innerText) {
       return true;
     }
   }

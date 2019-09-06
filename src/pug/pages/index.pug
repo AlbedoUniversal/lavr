@@ -6,13 +6,14 @@ block variables
   - var pageClass = 'huscvarna'
 
 block content
-  section
-    h1 I LEARN TO JAVA SCRIPT
-
-    input(class="textFieldForTask" type="text" maxlength="20")
-    input(class="addTask" type="button" value="add new task")
-    ul.listTasks
-    button(id="clearAll" disabled) Clear all
+  section.test
+    h1.common-heading the finest TodoList in the world
+    .todoList
+      .todoList-content
+        input(class="textFieldForTask" type="text" maxlength="20")
+        input(class="addTask" type="button" value="add new task")
+        ul.listTasks
+        button(id="clearAll" disabled) Clear all
 
 
 
