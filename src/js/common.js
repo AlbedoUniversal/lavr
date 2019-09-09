@@ -1,4 +1,8 @@
-const todoList = [];
+let todoList = localStorage.getItem("task")
+  ? JSON.parse(localStorage.getItem("task"))
+  : [];
+
+console.log(todoList);
 
 const addTask = document.querySelector(".addTask");
 
@@ -23,54 +27,67 @@ addTask.addEventListener("click", () => {
     alert("уже есть такой сука блядь");
     userText.value = "";
   } else {
-    const task = {}; //создали объект на каждую задачу;
-    task.name = userText.value.trim(); // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
-    task.check = false; // 2-оe св-во об, для будущего задела на чекнуто ли?
+    const task = {
+      name: userText.value.trim(), // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
+      check: false, // 2-оe св-во об, для будущего задела на чекнуто ли?
+      id: `task-${todoList.length}`
+    }; //создали объект на каждую задачу;
     todoList.push(task); // индекс массива приравнивается к объекту
-    createTask(todoList.length - 1);
+    createTask(task);
+    localStorage.setItem("task", JSON.stringify(todoList[i]));
     clearAll.removeAttribute("disabled"); // удаляем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
   }
 });
 
 // создаем новый таск
-function createTask(id) {
+function createTask(task) {
   const newLi = document.createElement("li");
   const buttonRemove = document.createElement("button");
   const buttonEdit = document.createElement("button");
   const textSpan = document.createElement("span");
-  id = `task-${id}`;
+  const editLink = document.createElement("a");
+  const removeLink = document.createElement("a");
+  id = `task-${task.id}`;
 
   listAllTasks.classList.add("activeList");
   listAllTasks.appendChild(newLi);
 
-  newLi.setAttribute("id", id);
+  newLi.setAttribute("id", task.id);
   newLi.classList.add("item");
 
   newLi.appendChild(textSpan);
-  textSpan.innerText = userText.value.trim();
+  // textSpan.innerText = userText.value.trim();
+  textSpan.innerText = task.name;
+  textSpan.classList.add("text");
 
-  buttonRemove.innerText = "delete";
+  buttonRemove.appendChild(removeLink);
   buttonRemove.classList.add("btn-remove");
+  removeLink.innerText = "delete";
+  removeLink.classList.add("link-remove");
   newLi.appendChild(buttonRemove);
 
-  buttonEdit.innerText = "edit this task";
+  buttonEdit.appendChild(editLink);
   buttonEdit.classList.add("btn-edit");
+  editLink.innerText = "edit this task";
+  editLink.classList.add("link-edit");
   newLi.appendChild(buttonEdit);
 
+  localStorage.setItem("task", JSON.stringify(todoList));
+
   buttonRemove.addEventListener("click", () => {
-    deleteTask(id);
+    deleteTask(task.id);
   });
 
   buttonEdit.addEventListener("click", () => {
-    // buttonRemove.toggleAttribute("disabled", "disabled");
-    editTask(id);
+    editTask(task.id);
   });
 }
-
 // удалить таск
 function deleteTask(id) {
   listAllTasks.querySelector(`#${id}`).remove();
-  console.log(listAllTasks);
+  todoList.splice(id, 1);
+  console.log(id);
+  localStorage.setItem("task", JSON.stringify(todoList));
 }
 
 // редактировать таск
@@ -83,6 +100,7 @@ function editTask(id) {
   userText.value = onlyTaskText;
   btnRemove.style.display = "none";
   currentEdit = id;
+  localStorage.setItem("task", JSON.stringify(todoList));
 }
 // сохранить таск
 function saveTask(id) {
@@ -90,6 +108,7 @@ function saveTask(id) {
   addTask.classList.remove("saveTask");
   addTask.classList.add("addTask");
   addTask.value = "add new task";
+  localStorage.setItem("task", JSON.stringify(todoList));
 }
 
 // перебор всех детей на поиск одинакового текста внутри листа
@@ -109,9 +128,17 @@ clearAll.addEventListener("click", () => {
   for (let i of allChilds) {
     i.remove();
   }
+  localStorage.setItem("task", JSON.stringify(todoList));
   userText.value = "";
   clearAll.setAttribute("disabled", "disabled");
 });
+
+if (localStorage.getItem("task")) {
+  todoList = JSON.parse(localStorage.getItem("task"));
+  todoList.forEach(task => {
+    createTask(task);
+  });
+}
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // МЕТОД СОРТ ДЛЯ МАССИВОВ ПЕРЕБОР

@@ -14,6 +14,9 @@ html {
   justify-content: center;
   background-color: #414141;
   height: 100vh;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
   .test {
     .common-heading {
       color: rgba(255, 255, 255, 0.1);
@@ -30,29 +33,6 @@ html {
       display: flex;
       justify-content: center;
       &-content {
-        position: relative;
-        &::before {
-          content: "";
-          position: absolute;
-          width: 81px;
-          height: 3px;
-          background-color: #fff;
-          left: 33%;
-          top: 5px;
-          transform: rotate(-6deg);
-          box-shadow: inset 0 0 0 0 #31302b;
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          width: 81px;
-          height: 3px;
-          background-color: #fff;
-          left: 33%;
-          top: 15px;
-          transform: rotate(6deg);
-          box-shadow: inset 0 0 0 0 #31302b;
-        }
         .addTask {
           cursor: pointer;
           background-color: rgb(12, 17, 34);
@@ -80,12 +60,15 @@ html {
         }
         .listTasks {
           width: 500px;
-          background-color: #eee;
+          background-image: url(/assets/img/bg1.jpg);
+          background-cize: cover;
+
           &.activeList {
             padding: 20px;
             border: 3px solid orange;
           }
           .item {
+            border-bottom: 1px solid #000000;
             list-style: none;
             background-image: url(/assets/img/svg2.svg); /* Параметры фона */
             background-repeat: no-repeat;
@@ -93,6 +76,77 @@ html {
             padding-left: 24px; /* Смещаем текст вправо */
             margin-bottom: 1rem;
             display: flex;
+            background-position-y: 18px;
+            align-items: center;
+            .text {
+              font-size: 1.5rem;
+              color: #ffffff;
+              margin-right: 2rem;
+            }
+            .btn-edit {
+              cursor: pointer;
+              overflow: hidden;
+              position: relative;
+              background: none;
+              border: none;
+              &:focus {
+                outline: none;
+              }
+              .link-edit {
+                display: block;
+                text-transform: uppercase;
+                line-height: 50px;
+                height: 50px;
+                width: 100%;
+                overflow: hidden;
+                text-align: center;
+                text-decoration: none;
+                font-weight: bold;
+                text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
+                color: rgb(133, 28, 28);
+                background: transparent;
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                  text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
+                  margin-top: -50px;
+                  height: 100px;
+                  background: transparent;
+                  color: black;
+                }
+              }
+            }
+            .btn-remove {
+              cursor: pointer;
+              overflow: hidden;
+              position: relative;
+              background: none;
+              border: none;
+              &:focus {
+                outline: none;
+              }
+              .link-remove {
+                display: block;
+                text-transform: uppercase;
+                line-height: 50px;
+                height: 50px;
+                width: 100%;
+                overflow: hidden;
+                text-align: center;
+                text-decoration: none;
+                font-weight: bold;
+                text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
+                color: rgb(133, 28, 28);
+                background: transparent;
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                  text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
+                  margin-top: -50px;
+                  height: 100px;
+                  background: transparent;
+                  color: black;
+                }
+              }
+            }
             .removeList {
               cursor: pointer;
               position: relative;
