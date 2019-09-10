@@ -1,13 +1,18 @@
 window.onload = () => {
   const btnCreate = document.querySelector(".btnCreate");
+  const btnSave = document.querySelector('.saveActive');
   const btnClearAll = document.querySelector(".clearAll");
   const taskText = document.querySelector(".userText");
   const parentList = document.querySelector(".list");
   let todoListArray = [];
   let current = 0;
 
-  btnCreate.addEventListener("click", function() {
+  btnCreate.addEventListener("click", function () {
     createTask();
+  });
+
+  btnSave.addEventListener("click", function () {
+    saveTask();
   });
 
   function createTask() {
@@ -35,13 +40,17 @@ window.onload = () => {
     btnEdit.classList.add("btn-edit");
     btnEdit.innerText = "редактировать";
 
-    btnDelete.onclick = function() {
+    btnDelete.onclick = function () {
       deleteTask(task.id);
     };
 
-    btnEdit.onclick = function() {
+    btnEdit.onclick = function () {
       editTask(task.id);
     };
+
+    if (btnCreate.classList.contains('saveActive')) {
+      console.log('hui');
+    }
   }
 
   function deleteTask(id) {
@@ -50,8 +59,15 @@ window.onload = () => {
   function editTask(id) {
     let btnDeletThisLi = document.querySelector(".btn-delete");
     btnCreate.innerText = "сохранить";
+    btnCreate.classList.remove('btnCreate');
+    btnCreate.classList.add('saveActive');
     btnDeletThisLi.setAttribute("disabled", "disabled");
-    console.log(btnDeletThisLi);
+  }
+
+  function saveTask() {
+    btnSave.innerText = 'добавить';
+    btnSave.classList.remove('saveActive');
+    btnSave.classList.add('btnCreate');
   }
 };
 
