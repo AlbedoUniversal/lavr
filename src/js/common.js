@@ -1,126 +1,206 @@
+window.onload = () => {
+  const btnCreate = document.querySelector(".btnCreate");
+  const btnClearAll = document.querySelector(".clearAll");
+  const taskText = document.querySelector(".userText");
+  const parentList = document.querySelector(".list");
+  let todoListArray = [];
+  let current = 0;
 
-window.onload = function () {
-
-  const todoList = [];
-  const enter = document.querySelector('.add');
-  const list = document.querySelector('.list');
-  let text = document.querySelector('.gettext');
-  const clearAll = document.getElementById('clearAll');
-
-  enter.onclick = function () {
-    if (text.value) {
-      let tasks = {};
-      tasks.todo = text.value;
-      tasks.check = false;
-      let i = todoList.length;
-      todoList[i] = tasks;
-      createLi();
-      // удаяем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
-      clearAll.removeAttribute('disabled');
-    } else {
-      alert('Empty field - this is not a task');
-    }
-  }
-
-
-  function createLi() {
-    let li = document.createElement('li');
-    li.classList.add('item');
-    li.innerHTML = text.value;
-    // console.log(li);
-    list.appendChild(li);
-    list.classList.add('activeList');
-
-    let div = document.createElement('div');
-    li.appendChild(div);
-    div.classList.add('removeList');
-    div.onclick = function () {
-      li.remove();
-    }
-
-    let button = document.createElement('button');
-    button.classList.add('edit');
-    button.innerText = 'редактировать поле';
-    li.appendChild(button);
-
-    button.onclick = function () {
-      let edditButton = this;
-      let listItem = this.parentNode;
-      let containsClass = listItem.classList.contains('item');
-      // console.log(this.containClass)
-      enter.classList.add('editt');
-      enter.value = 'save';
-
-
-      if (containsClass) {
-        li = text.value;
-        console.log(li);
-        console.log(text.value);
-      } else {
-        text.value = li;
-      }
-
-    }
-
-  }
-
-
-  clearAll.addEventListener('click', function clearLastItem() {
-    let allChilds = document.querySelectorAll('.list .item');
-
-    for (let listItem of allChilds) {
-      listItem.remove();
-    }
-    clearAll.setAttribute('disabled', 'disabled');
+  btnCreate.addEventListener("click", function() {
+    createTask();
   });
-}
 
+  function createTask() {
+    const newLi = document.createElement("li");
+    const newliText = document.createElement("span");
+    const btnDelete = document.createElement("button");
+    const btnEdit = document.createElement("button");
+    let task = {
+      name: taskText.value.trim(),
+      check: false,
+      id: `task-${todoListArray.length}`
+    };
+    todoListArray.push(task);
 
+    parentList.appendChild(newLi);
+    newLi.setAttribute("id", task.id);
+    newLi.appendChild(newliText);
+    newLi.appendChild(btnDelete);
+    newLi.appendChild(btnEdit);
+    newliText.innerText = task.name;
 
+    btnDelete.classList.add("btn-delete");
+    btnDelete.innerText = "удалить";
 
+    btnEdit.classList.add("btn-edit");
+    btnEdit.innerText = "редактировать";
 
+    btnDelete.onclick = function() {
+      deleteTask(task.id);
+    };
 
+    btnEdit.onclick = function() {
+      editTask(task.id);
+    };
+  }
 
+  function deleteTask(id) {
+    parentList.querySelector(`#${id}`).remove();
+  }
+  function editTask(id) {
+    let btnDeletThisLi = document.querySelector(".btn-delete");
+    btnCreate.innerText = "сохранить";
+    btnDeletThisLi.setAttribute("disabled", "disabled");
+    console.log(btnDeletThisLi);
+  }
+};
 
+// +++++++++++++++++++++++++++++++++++++++++++++++++++
+// НЕ ОЧЕНЬ ХОРОШИЙ ТУДУ ЛИСТ
+// let todoList = localStorage.getItem("task")
+//   ? JSON.parse(localStorage.getItem("task"))
+//   : [];
 
+// console.log(todoList);
 
+// const addTask = document.querySelector(".addTask");
 
+// const listAllTasks = document.querySelector(".listTasks");
 
+// const userText = document.querySelector(".textFieldForTask");
 
+// const clearAll = document.getElementById("clearAll");
 
+// let currentEdit = 0;
 
+// addTask.addEventListener("click", () => {
+//   if (userText.value.trim().length == 0 && userText.value.trim() != null) {
+//     alert("Empty field - this is not a task");
+//   } else if (addTask.classList.contains("saveTask") && bruteForce()) {
+//     alert("ты пидор такое уже есть в списке");
+//   } else if (addTask.classList.contains("saveTask")) {
+//     saveTask(currentEdit);
+//     let btnRemove2 = document.querySelector(`#${currentEdit} > .btn-remove`);
+//     btnRemove2.style.display = "block";
+//   } else if (bruteForce()) {
+//     alert("уже есть такой сука блядь");
+//     userText.value = "";
+//   } else {
+//     const task = {
+//       name: userText.value.trim(), // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
+//       check: false, // 2-оe св-во об, для будущего задела на чекнуто ли?
+//       id: `task-${todoList.length}`
+//     }; //создали объект на каждую задачу;
+//     todoList.push(task); // индекс массива приравнивается к объекту
+//     createTask(task);
+//     localStorage.setItem("task", JSON.stringify(todoList[i]));
+//     clearAll.removeAttribute("disabled"); // удаляем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
+//   }
+// });
 
+// // создаем новый таск
+// function createTask(task) {
+//   const newLi = document.createElement("li");
+//   const buttonRemove = document.createElement("button");
+//   const buttonEdit = document.createElement("button");
+//   const textSpan = document.createElement("span");
+//   const editLink = document.createElement("a");
+//   const removeLink = document.createElement("a");
+//   id = `task-${task.id}`;
 
+//   listAllTasks.classList.add("activeList");
+//   listAllTasks.appendChild(newLi);
 
+//   newLi.setAttribute("id", task.id);
+//   newLi.classList.add("item");
 
+//   newLi.appendChild(textSpan);
+//   // textSpan.innerText = userText.value.trim();
+//   textSpan.innerText = task.name;
+//   textSpan.classList.add("text");
 
+//   buttonRemove.appendChild(removeLink);
+//   buttonRemove.classList.add("btn-remove");
+//   removeLink.innerText = "delete";
+//   removeLink.classList.add("link-remove");
+//   newLi.appendChild(buttonRemove);
 
+//   buttonEdit.appendChild(editLink);
+//   buttonEdit.classList.add("btn-edit");
+//   editLink.innerText = "edit this task";
+//   editLink.classList.add("link-edit");
+//   newLi.appendChild(buttonEdit);
 
+//   localStorage.setItem("task", JSON.stringify(todoList));
 
+//   buttonRemove.addEventListener("click", () => {
+//     deleteTask(task.id);
+//   });
 
+//   buttonEdit.addEventListener("click", () => {
+//     editTask(task.id);
+//   });
+// }
+// // удалить таск
+// function deleteTask(id) {
+//   listAllTasks.querySelector(`#${id}`).remove();
+//   todoList.splice(id, 1);
+//   console.log(id);
+//   localStorage.setItem("task", JSON.stringify(todoList));
+// }
 
+// // редактировать таск
+// function editTask(id) {
+//   let onlyTaskText = document.querySelector(`#${id} > span`).innerText;
+//   let btnRemove = document.querySelector(`#${id} > .btn-remove`);
 
+//   addTask.classList.add("saveTask");
+//   addTask.value = "save this task";
+//   userText.value = onlyTaskText;
+//   btnRemove.style.display = "none";
+//   currentEdit = id;
+//   localStorage.setItem("task", JSON.stringify(todoList));
+// }
+// // сохранить таск
+// function saveTask(id) {
+//   document.querySelector(`#${id} > span`).innerText = userText.value.trim();
+//   addTask.classList.remove("saveTask");
+//   addTask.classList.add("addTask");
+//   addTask.value = "add new task";
+//   localStorage.setItem("task", JSON.stringify(todoList));
+// }
 
+// // перебор всех детей на поиск одинакового текста внутри листа
+// function bruteForce() {
+//   let childrensList = document.querySelectorAll(".listTasks .item > span");
+//   for (let item of childrensList) {
+//     if (userText.value.trim() === item.innerText) {
+//       return true;
+//     }
+//   }
+// }
 
+// // очистить все поле ul
+// clearAll.addEventListener("click", () => {
+//   let allChilds = document.querySelectorAll(".listTasks .item");
 
+//   for (let i of allChilds) {
+//     i.remove();
+//   }
+//   localStorage.setItem("task", JSON.stringify(todoList));
+//   userText.value = "";
+//   clearAll.setAttribute("disabled", "disabled");
+// });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// if (localStorage.getItem("task")) {
+//   todoList = JSON.parse(localStorage.getItem("task"));
+//   todoList.forEach(task => {
+//     createTask(task);
+//   });
+// }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// МЕТОД СОРТ ДЛЯ МАССИВОВ ПЕРЕБОР 
+// МЕТОД СОРТ ДЛЯ МАССИВОВ ПЕРЕБОР
 // let products = [  { name:"Grapefruit", calories: 170, color: "red", sold: 8200 },
 //                   { name:"Orange", calories: 160, color: "orange", sold: 12101 },
 //                   { name:"Cola", calories: 210, color: "caramel", sold: 25412 },
@@ -132,7 +212,6 @@ window.onload = function () {
 //                   { name: "Water", calories: 0, color: "clear", sold: 62123 }
 
 //                 ];
-
 
 // function compareSold (colaA, colaB) {
 //   if (colaA.sold > colaB.sold) {
@@ -164,8 +243,6 @@ window.onload = function () {
 //   }
 // }
 
-
-
 // products.sort(compareSold);
 // console.log(products.sort(compareSold));
 // products.sort(compareCalories);
@@ -173,119 +250,100 @@ window.onload = function () {
 // products.sort(compareNames);
 // console.log(products.sort(compareNames));
 
-
-
-
-
-
-
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++
 // ХУЕТА ПРО ПАССАЖИРОВ И ОЧЕНЬ ТУПОЙ ПРИМЕР
-  // let passengers = [
-  //   { name: 'Aleksander Zalup', paid: true, ticket: 'coach' },
-  //   { name: 'Dima Kilop', paid: true, ticket: 'firstclass' },
-  //   { name: 'Vitya AK47', paid: true, ticket: 'firstclass' },
-  //   { name: 'Oleg Mishkin', paid: true, ticket: 'coach' }
-  // ];
+// let passengers = [
+//   { name: 'Aleksander Zalup', paid: true, ticket: 'coach' },
+//   { name: 'Dima Kilop', paid: true, ticket: 'firstclass' },
+//   { name: 'Vitya AK47', paid: true, ticket: 'firstclass' },
+//   { name: 'Oleg Mishkin', paid: true, ticket: 'coach' }
+// ];
 
-  // function checkNoFlylist(passenger) {
-  //   return (passenger.name === 'Vitya AK47');
-  // }
+// function checkNoFlylist(passenger) {
+//   return (passenger.name === 'Vitya AK47');
+// }
 
-  // function checkNotPaid(passenger) {
-  //   return (!passenger.paid);
-  // }
+// function checkNotPaid(passenger) {
+//   return (!passenger.paid);
+// }
 
-  // function processPassengers(passengers, testFunction) {
-  //   for (let i = 0; i < passengers.length; i++) {
-  //     if (testFunction(passengers[i])) {
-  //       return false;
-  //     }
-  //   }
-  //   return true;
-  // }
+// function processPassengers(passengers, testFunction) {
+//   for (let i = 0; i < passengers.length; i++) {
+//     if (testFunction(passengers[i])) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
+// let allCanFly = processPassengers(passengers, checkNoFlylist);
+// if (!allCanFly) {
+//   console.log("The plane can't take off: we have a passenger on the no-fly-list.");
+// }
 
-  // let allCanFly = processPassengers(passengers, checkNoFlylist);
-  // if (!allCanFly) {
-  //   console.log("The plane can't take off: we have a passenger on the no-fly-list.");
-  // }
+// let allPaid = processPassengers(passengers, checkNotPaid);
+// if (!allPaid) {
+//   console.log("The plane can't take off: not everyone has paid.");
+// }
 
-  // let allPaid = processPassengers(passengers, checkNotPaid);
-  // if (!allPaid) {
-  //   console.log("The plane can't take off: not everyone has paid.");
-  // }
+// function printPassenger(passenger) {
+//   let message = passenger.name;
+//   if (passenger.paid === true) {
+//     message = `${message} has paid`;
+//   } else {
+//     message = `${message} has not paid`;
+//   }
+//   console.log(message);
+//   return false;
+// }
 
-  // function printPassenger(passenger) {
-  //   let message = passenger.name;
-  //   if (passenger.paid === true) {
-  //     message = `${message} has paid`;
-  //   } else {
-  //     message = `${message} has not paid`;
-  //   }
-  //   console.log(message);
-  //   return false;
-  // }
+// processPassengers(passengers, printPassenger);
 
-  // processPassengers(passengers, printPassenger);
+// function createDrinkOrder(passenger) {
 
+//   let orderFunction;
 
+//   if (passenger.ticket === 'firstclass') {
+//     orderFunction = function() {
+//       console.log('Would you like a cocktail or wine');
+//     }
+//   }
+//   else {
+//     orderFunction = function () {
+//       console.log('Your choice is cola or water.');
+//     }
+//   }
+//   return orderFunction;
+// }
 
+// function serveCustomer(passenger) {
+//   let getDrinkOrderFunction = createDrinkOrder(passenger);
+//   getDrinkOrderFunction();
+//   getDrinkOrderFunction();
+//   getDrinkOrderFunction();
+//   getDrinkOrderFunction();
+//   getDrinkOrderFunction();
+// }
 
-  // function createDrinkOrder(passenger) {
+// function servePassengers(passengers) {
+//   for (var i = 0; i < passengers.length; i++) {
+//     serveCustomer(passengers[i]);
+//   }
+// }
 
-  //   let orderFunction;
-
-  //   if (passenger.ticket === 'firstclass') {
-  //     orderFunction = function() {
-  //       console.log('Would you like a cocktail or wine');
-  //     }
-  //   }
-  //   else {
-  //     orderFunction = function () {
-  //       console.log('Your choice is cola or water.');
-  //     }
-  //   }
-  //   return orderFunction;
-  // }
-
-
-
-  // function serveCustomer(passenger) {
-  //   let getDrinkOrderFunction = createDrinkOrder(passenger);
-  //   getDrinkOrderFunction();
-  //   getDrinkOrderFunction();
-  //   getDrinkOrderFunction();
-  //   getDrinkOrderFunction();
-  //   getDrinkOrderFunction();
-  // }
-
-  // function servePassengers(passengers) {
-  //   for (var i = 0; i < passengers.length; i++) {
-  //     serveCustomer(passengers[i]);
-  //   }
-  // }
-
-  // servePassengers(passengers);
-
-
+// servePassengers(passengers);
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
-  // НЕБОЛЬШОЙ ПРИМЕРЧИК ПРО ФУНКЦИИ ВЫСШЕГО ПОРЯДКА, КОТОРЫЕ ПЕРЕДАЮТСЯ ИЗ ФУНКЦИИ В ФУНКЦИЮ
-  // function sayIt(translator) {
-  //   var phrase = translator("Hello");
-  //   alert(phrase);
-  // }
-  // function hawaiianTranslator(word) {
-  //   if (word === "Hello") return "Aloha";
-  //   if (word === "Goodbye") return "Aloha";
-  // }
-  // sayIt(hawaiianTranslator);
-
-
-
+// НЕБОЛЬШОЙ ПРИМЕРЧИК ПРО ФУНКЦИИ ВЫСШЕГО ПОРЯДКА, КОТОРЫЕ ПЕРЕДАЮТСЯ ИЗ ФУНКЦИИ В ФУНКЦИЮ
+// function sayIt(translator) {
+//   var phrase = translator("Hello");
+//   alert(phrase);
+// }
+// function hawaiianTranslator(word) {
+//   if (word === "Hello") return "Aloha";
+//   if (word === "Goodbye") return "Aloha";
+// }
+// sayIt(hawaiianTranslator);
 
 // ++++++++++++++++++++++++++++++++++++++++
 // ПОБЫЛУЕМСЯ С РЕСАЙЗОМ СТРАНИЦЫ ХИ ХИ
@@ -293,8 +351,6 @@ window.onload = function () {
 //   let h = document.querySelector('h1');
 //   h.innerHTML = h.innerHTML + 'that tickles';
 // }
-
-
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++
 // ВСЯ ТАЖЕ ИГРА С КАРТИКАМИ НО ПО НАВЕДЕНИЮ МЫШИ
@@ -325,27 +381,23 @@ window.onload = function () {
 //       }
 // }
 
-
-
-
 // +++++++++++++++++++++++
 // ТИК ТОК хи хи
-  // let tick = true;
-  // function ticker() {
-  //   if (tick) {
-  //     console.log('Tick');
-  //     tick = false;
-  //   }
-  //   else {
-  //     console.log('Tock');
-  //     tick = true;
-  //   }
-  // }
-  // setInterval(ticker, 1500);
-
+// let tick = true;
+// function ticker() {
+//   if (tick) {
+//     console.log('Tick');
+//     tick = false;
+//   }
+//   else {
+//     console.log('Tock');
+//     tick = true;
+//   }
+// }
+// setInterval(ticker, 1500);
 
 // +++++++++++++++++++++++++++++++++++++++++++++++
-  // НЕМНОГО РАБОТЫ С МЕТОДОМ SETTIMEOUT
+// НЕМНОГО РАБОТЫ С МЕТОДОМ SETTIMEOUT
 //   function showAlert(){
 //     alert('What are you doing on my pages, little boy?')
 //   }
@@ -353,9 +405,8 @@ window.onload = function () {
 //   setTimeout(showAlert, 5000);
 // }
 
-
 // +++++++++++++++++++++++++++++++++++++++++++++++
-// КООРДИНАТЫ ПО КАРТЕ 
+// КООРДИНАТЫ ПО КАРТЕ
 //   function find() {
 //     let map = document.querySelector('#map');
 //     map.onmousemove = showCoords;
@@ -366,16 +417,14 @@ window.onload = function () {
 //     let x = eventObj.clientX;
 //     let y = eventObj.clientY;
 
-//     coords.innerHTML = "Map coordinates: " 
+//     coords.innerHTML = "Map coordinates: "
 //     + x + "," + y;
 //   }
 //   find();
 // }
 
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  // ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
+// ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
 //   function init() {
 //     let images = document.querySelectorAll('.photo .blur');
 //     for(let i = 0; i < images.length; i++) {
@@ -400,8 +449,6 @@ window.onload = function () {
 //     return false;
 //   }
 // }
-
-
 
 // ПО КЛИКУ ОБЪЕКТ ИСЧЕЗАЕТ И ПЛАВНО ДВИГАЮТСЯ ОСТАЛЬНЫЕН
 //   let allItems = document.querySelectorAll('.items .item');
@@ -435,10 +482,6 @@ window.onload = function () {
 //   }, (1000 / fps));
 // }
 
-
-
-
-
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РАНДОМНОЕ ПОЯВЛЕНЕ КРАСНЫХ РАМОК НА БЛОКАХ ОЧ ПРИКОЛЬНО
 //   let items = document.querySelectorAll('.items .item');
@@ -459,30 +502,11 @@ window.onload = function () {
 //   return Math.floor(Math.random() * (max-min + 1));
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  // slider через классы, один сам меняется, второй по нажатию
+// slider через классы, один сам меняется, второй по нажатию
 //   let btn_prev = document.querySelector('.gallery .buttons .prev');
 //   let btn_next = document.querySelector('.gallery .buttons .next');
 //   let images = document.querySelectorAll('.gallery--1 .photos img');
-
-
 
 //   let slider = new Slider(images);
 
@@ -493,21 +517,9 @@ window.onload = function () {
 //     slider.btn_prev();
 //   }
 
-
-
-
-
-
 //   let images2 = document.querySelectorAll('.gallery--2 .photos img');
 //   let slider2 = new Slider(images2);
 //   setInterval(function() {slider2.btn_prev();},1500);
-
-
-
-
-
-
-
 
 // function Slider(images) {
 //   this.images = images;
@@ -532,10 +544,7 @@ window.onload = function () {
 //   }
 // };
 
-
-
-
-  // НЕМНОГО О КЛАССАХ
+// НЕМНОГО О КЛАССАХ
 //   function Cat(name) {
 //     this.name = name;
 //     this.age = 0;
@@ -552,12 +561,8 @@ window.onload = function () {
 //   console.log(cat1);
 // }
 
-
-
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// SLIDER 
+// SLIDER
 
 //   let btn_prev = document.querySelector('.gallery .buttons .prev');
 //   let btn_next = document.querySelector('.gallery .buttons .next');
@@ -577,7 +582,7 @@ window.onload = function () {
 
 //   btn_next.onclick = function() {
 //     images[i].classList.remove ('showed');
-//     i++;    
+//     i++;
 //     if (i >= images.length) {
 //       i = 0;
 //     }
@@ -585,12 +590,8 @@ window.onload = function () {
 //   }
 // }
 
-
-
-
-
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ЗАПРЕТ ПЕРЕТАСКИВАТИЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ 
+// ЗАПРЕТ ПЕРЕТАСКИВАТИЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ
 //   let links = document.querySelectorAll('a[target=_blank]');
 
 //   for (let i = 0; i < links.length; i++){
@@ -614,12 +615,9 @@ window.onload = function () {
 //   }
 // }
 
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // РАБОЧИЙ КАЛЬКУЛЯТОР, С БОЛЕЕ МЕНЕЕ НОРМАЛЬНЫМ КОДОМ
-
 
 //   let num1 = document.querySelector('input[name=num1]');
 //   let num2 = document.querySelector('input[name=num2]');
@@ -640,7 +638,7 @@ window.onload = function () {
 
 //     if (op === '+') {
 //       res = a + b;
-//     } 
+//     }
 //     else if (op === '-' ) {
 //       res = a - b;
 //     }
@@ -657,12 +655,7 @@ window.onload = function () {
 //   }
 // }
 
-
-
-
-
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 
 // решение калькулятора методом копипаста конченное, но пусть лежит для памяти
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -681,7 +674,6 @@ window.onload = function () {
 //     inp2.oninput = btnEnable1;
 //   }
 
-
 //   let inp3 = document.querySelector('input[name=num3]');
 //   let inp4 = document.querySelector('input[name=num4]');
 //   let btn2 = document.querySelector('input[name=sub]');
@@ -689,7 +681,7 @@ window.onload = function () {
 
 //   btn2.onclick = function sub() {
 //     var sub = parseInt(inp3.value) - parseInt(inp4.value);
-//     span2.innerHTML = sub; 
+//     span2.innerHTML = sub;
 //     this.disabled = true;
 //     let btnEnable2 = function() {
 //       btn2.disabled = false;
@@ -697,7 +689,6 @@ window.onload = function () {
 //     inp3.oninput = btnEnable2;
 //     inp4.oninput = btnEnable2;
 //   }
-
 
 //   let inp5 = document.querySelector('input[name=num5]');
 //   let inp6 = document.querySelector('input[name=num6]');
@@ -714,8 +705,6 @@ window.onload = function () {
 //     inp5.oninput = btnEnable3;
 //     inp6.oninput = btnEnable3;
 //   }
-
-
 
 //   let inp7 = document.querySelector('input[name=num7]');
 //   let inp8 = document.querySelector('input[name=num8]');
@@ -734,10 +723,7 @@ window.onload = function () {
 //   }
 // }
 
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 
 // ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
 ///////////////////////////////////////////////////////////////////////

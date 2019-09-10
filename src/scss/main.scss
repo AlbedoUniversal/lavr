@@ -1,6 +1,6 @@
-@import 'utils/vars';
-@import 'utils/mixins';
-@import 'utils/fonts';
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
 
 html {
   font-size: $mainFontSize;
@@ -9,126 +9,182 @@ html {
   border: 1px solid red;
 }
 
+// +++++++++++++++++++++++++++++++++++++++++
+// НЕ ОЧЕНЬ ХОРОШИЙ ТУДУ ЛИСТ
+// .content-wrapper {
+//   display: flex;
+//   justify-content: center;
+//   background-color: #414141;
+//   height: 100vh;
+//   width: 100%;
+//   padding: 0px;
+//   margin: 0px;
+//   .test {
+//     .common-heading {
+//       color: rgba(255, 255, 255, 0.1);
+//       font-size: rem(50);
+//       font-family: Nordic;
+//       text-transform: uppercase;
+//       font-weight: 700;
+//       background-image: url(/assets/img/acid.jpg);
+//       background-clip: text;
+//       animation: acid 40s infinite;
+//     }
 
-h1 {
-  color: salmon;
-  font-size: rem(32);
-  font-family: Nordic;
-}
+//     .todoList {
+//       display: flex;
+//       justify-content: center;
+//       &-content {
+//         .addTask {
+//           cursor: pointer;
+//           background-color: rgb(12, 17, 34);
+//           border: 2px solid gold;
+//           font-family: Nordic;
+//           font-weight: bold;
+//           color: rgb(252, 229, 101);
+//           padding: 0.4rem 0.5rem;
+//           box-shadow: 0 14px 28px rgba(255, 210, 8, 0.25),
+//             0 10px 10px rgba(158, 212, 10, 0.22);
+//           margin-left: 5rem;
+//           &:hover .todoList-content::before {
+//             box-shadow: inset 100px 0 0 0 #e0e0e0;
+//           }
+//         }
 
+//         .saveTask {
+//           cursor: pointer;
+//           background-color: rgb(199, 182, 33);
+//           border: 2px solid gold;
+//           font-family: Nordic;
+//           font-weight: bold;
+//           color: rgb(12, 94, 216);
+//           padding: 0.4rem 0.5rem;
+//         }
+//         .listTasks {
+//           width: 500px;
+//           background-image: url(/assets/img/bg1.jpg);
+//           background-cize: cover;
 
+//           &.activeList {
+//             padding: 20px;
+//             border: 3px solid orange;
+//           }
+//           .item {
+//             border-bottom: 1px solid #000000;
+//             list-style: none;
+//             background-image: url(/assets/img/svg2.svg); /* Параметры фона */
+//             background-repeat: no-repeat;
+//             background-size: 3%;
+//             padding-left: 24px; /* Смещаем текст вправо */
+//             margin-bottom: 1rem;
+//             display: flex;
+//             background-position-y: 18px;
+//             align-items: center;
+//             .text {
+//               font-size: 1.5rem;
+//               color: #ffffff;
+//               margin-right: 2rem;
+//             }
+//             .btn-edit {
+//               cursor: pointer;
+//               overflow: hidden;
+//               position: relative;
+//               background: none;
+//               border: none;
+//               &:focus {
+//                 outline: none;
+//               }
+//               .link-edit {
+//                 display: block;
+//                 text-transform: uppercase;
+//                 line-height: 50px;
+//                 height: 50px;
+//                 width: 100%;
+//                 overflow: hidden;
+//                 text-align: center;
+//                 text-decoration: none;
+//                 font-weight: bold;
+//                 text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
+//                 color: rgb(133, 28, 28);
+//                 background: transparent;
+//                 transition: all 0.3s ease-in-out;
+//                 &:hover {
+//                   text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
+//                   margin-top: -50px;
+//                   height: 100px;
+//                   background: transparent;
+//                   color: black;
+//                 }
+//               }
+//             }
+//             .btn-remove {
+//               cursor: pointer;
+//               overflow: hidden;
+//               position: relative;
+//               background: none;
+//               border: none;
+//               &:focus {
+//                 outline: none;
+//               }
+//               .link-remove {
+//                 display: block;
+//                 text-transform: uppercase;
+//                 line-height: 50px;
+//                 height: 50px;
+//                 width: 100%;
+//                 overflow: hidden;
+//                 text-align: center;
+//                 text-decoration: none;
+//                 font-weight: bold;
+//                 text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
+//                 color: rgb(133, 28, 28);
+//                 background: transparent;
+//                 transition: all 0.3s ease-in-out;
+//                 &:hover {
+//                   text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
+//                   margin-top: -50px;
+//                   height: 100px;
+//                   background: transparent;
+//                   color: black;
+//                 }
+//               }
+//             }
+//             .removeList {
+//               cursor: pointer;
+//               position: relative;
+//               margin-left: 1rem;
+//               width: 10px;
+//               height: 10px;
+//               &::before {
+//                 content: "";
+//                 width: 3px;
+//                 height: 20px;
+//                 position: absolute;
+//                 transform: rotate(45deg);
+//                 background-color: red;
+//                 border-radius: 50%;
+//               }
+//               &::after {
+//                 content: "";
+//                 width: 3px;
+//                 height: 17px;
+//                 position: absolute;
+//                 transform: rotate(-45deg);
+//                 background-color: red;
+//                 border-radius: 50%;
+//               }
+//             }
+//             .edit {
+//               margin-left: 1rem;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-.add {
-  cursor: pointer;
-  background-color: rgb(21, 49, 139);
-  border: 2px solid gold;
-  font-family: Nordic;
-  font-weight: bold;
-  color: gold;
-  padding: 0.4rem 0.5rem;
-}
-.editt {
-  cursor: pointer;
-  background-color: rgb(13, 15, 22);
-  border: 2px solid rgb(134, 119, 35);
-  font-family: Nordic;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  padding: 0.4rem 0.5rem;
-}
-.list {
-  width: 500px;
-  background-color: #eee;
-  &.activeList {
-    padding: 20px;
-    border: 3px solid orange;
-  }
-  .item {
-    list-style: none;
-    background-image: url(/assets/img/o.png); /* Параметры фона */
-    background-repeat: no-repeat;
-    background-size: 3%;
-    padding-left: 24px; /* Смещаем текст вправо */ 
-    margin-bottom: 1rem;
-    display: flex;
-    .removeList {
-      cursor: pointer;
-      position: relative;
-      margin-left: 1rem;
-      width: 10px;
-      height: 10px;
-      &::before {
-        content: "";
-        width: 3px;
-        height: 20px;
-        position: absolute;
-        transform: rotate(45deg);
-        background-color: red;
-        border-radius: 50%;
-      }
-      &::after {
-        content: "";
-        width: 3px;
-        height: 17px;
-        position: absolute;
-        transform: rotate(-45deg);
-        background-color: red;
-        border-radius: 50%;
-      }
-    }
-    .edit {
-      margin-left: 1rem;
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
+// ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
 // .photo {
 //   display: flex;
 //   flex-wrap: wrap;
@@ -139,9 +195,6 @@ h1 {
 //     cursor: pointer;
 //   }
 // }
-
-
-
 
 // ПО КЛИКУ ОБЪЕКТ ИСЧЕЗАЕТ И ВСЕ ДВИГАЕТСЯ КАК НАДО
 // .items {
@@ -157,9 +210,6 @@ h1 {
 //     padding: 10px;
 //   }
 // }
-
-
-
 
 // РАНДОМНОЕ ПОЯВЛЕНЕ КРАСНЫХ РАМОК НА БЛОКАХ ОЧ ПРИКОЛЬНО
 // .items {
@@ -178,12 +228,6 @@ h1 {
 // .active1 {
 //   border: 3px solid red;
 // }
-
-
-
-
-
-
 
 // .gallery {
 //   width: 860px;
@@ -205,7 +249,6 @@ h1 {
 //     }
 //   }
 // }
-
 
 // SLIDER
 // .gallery {
@@ -229,30 +272,10 @@ h1 {
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ЗАПРЕТ ПЕРЕТАСКИВАТЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ 
+// ЗАПРЕТ ПЕРЕТАСКИВАТЬ ФОТОГРАФИИ И СОХРАНЯТЬ ИХ
 // .gallery img {
 //   width: 400px;
 // }
-
-
 
 // РАБОЧИЙ КАЛЬКУЛЯТОР
 // .calculator {
@@ -275,13 +298,7 @@ h1 {
 //   }
 // }
 
-
-
-
-
-
 // ПЕРВОЕ ЗАДАНИЕ С ПОДЦЕТКОЙ КАРТОЧЕК ТОВАРА И СУММОЙ НАБРАННЫХ ТОВАРОВ
-
 
 // .items {
 //   display: flex;
