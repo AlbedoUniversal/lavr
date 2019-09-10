@@ -1,144 +1,203 @@
-let todoList = localStorage.getItem("task")
-  ? JSON.parse(localStorage.getItem("task"))
-  : [];
+window.onload = () => {
+  const btnCreate = document.querySelector(".btnCreate");
+  const btnClearAll = document.querySelector(".clearAll");
+  const taskText = document.querySelector(".userText");
+  const parentList = document.querySelector(".list");
+  let todoListArray = [];
+  let current = 0;
 
-console.log(todoList);
-
-const addTask = document.querySelector(".addTask");
-
-const listAllTasks = document.querySelector(".listTasks");
-
-const userText = document.querySelector(".textFieldForTask");
-
-const clearAll = document.getElementById("clearAll");
-
-let currentEdit = 0;
-
-addTask.addEventListener("click", () => {
-  if (userText.value.trim().length == 0 && userText.value.trim() != null) {
-    alert("Empty field - this is not a task");
-  } else if (addTask.classList.contains("saveTask") && bruteForce()) {
-    alert("ты пидор такое уже есть в списке");
-  } else if (addTask.classList.contains("saveTask")) {
-    saveTask(currentEdit);
-    let btnRemove2 = document.querySelector(`#${currentEdit} > .btn-remove`);
-    btnRemove2.style.display = "block";
-  } else if (bruteForce()) {
-    alert("уже есть такой сука блядь");
-    userText.value = "";
-  } else {
-    const task = {
-      name: userText.value.trim(), // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
-      check: false, // 2-оe св-во об, для будущего задела на чекнуто ли?
-      id: `task-${todoList.length}`
-    }; //создали объект на каждую задачу;
-    todoList.push(task); // индекс массива приравнивается к объекту
-    createTask(task);
-    localStorage.setItem("task", JSON.stringify(todoList[i]));
-    clearAll.removeAttribute("disabled"); // удаляем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
-  }
-});
-
-// создаем новый таск
-function createTask(task) {
-  const newLi = document.createElement("li");
-  const buttonRemove = document.createElement("button");
-  const buttonEdit = document.createElement("button");
-  const textSpan = document.createElement("span");
-  const editLink = document.createElement("a");
-  const removeLink = document.createElement("a");
-  id = `task-${task.id}`;
-
-  listAllTasks.classList.add("activeList");
-  listAllTasks.appendChild(newLi);
-
-  newLi.setAttribute("id", task.id);
-  newLi.classList.add("item");
-
-  newLi.appendChild(textSpan);
-  // textSpan.innerText = userText.value.trim();
-  textSpan.innerText = task.name;
-  textSpan.classList.add("text");
-
-  buttonRemove.appendChild(removeLink);
-  buttonRemove.classList.add("btn-remove");
-  removeLink.innerText = "delete";
-  removeLink.classList.add("link-remove");
-  newLi.appendChild(buttonRemove);
-
-  buttonEdit.appendChild(editLink);
-  buttonEdit.classList.add("btn-edit");
-  editLink.innerText = "edit this task";
-  editLink.classList.add("link-edit");
-  newLi.appendChild(buttonEdit);
-
-  localStorage.setItem("task", JSON.stringify(todoList));
-
-  buttonRemove.addEventListener("click", () => {
-    deleteTask(task.id);
+  btnCreate.addEventListener("click", function() {
+    createTask();
   });
 
-  buttonEdit.addEventListener("click", () => {
-    editTask(task.id);
-  });
-}
-// удалить таск
-function deleteTask(id) {
-  listAllTasks.querySelector(`#${id}`).remove();
-  todoList.splice(id, 1);
-  console.log(id);
-  localStorage.setItem("task", JSON.stringify(todoList));
-}
+  function createTask() {
+    const newLi = document.createElement("li");
+    const newliText = document.createElement("span");
+    const btnDelete = document.createElement("button");
+    const btnEdit = document.createElement("button");
+    let task = {
+      name: taskText.value.trim(),
+      check: false,
+      id: `task-${todoListArray.length}`
+    };
+    todoListArray.push(task);
 
-// редактировать таск
-function editTask(id) {
-  let onlyTaskText = document.querySelector(`#${id} > span`).innerText;
-  let btnRemove = document.querySelector(`#${id} > .btn-remove`);
+    parentList.appendChild(newLi);
+    newLi.setAttribute("id", task.id);
+    newLi.appendChild(newliText);
+    newLi.appendChild(btnDelete);
+    newLi.appendChild(btnEdit);
+    newliText.innerText = task.name;
 
-  addTask.classList.add("saveTask");
-  addTask.value = "save this task";
-  userText.value = onlyTaskText;
-  btnRemove.style.display = "none";
-  currentEdit = id;
-  localStorage.setItem("task", JSON.stringify(todoList));
-}
-// сохранить таск
-function saveTask(id) {
-  document.querySelector(`#${id} > span`).innerText = userText.value.trim();
-  addTask.classList.remove("saveTask");
-  addTask.classList.add("addTask");
-  addTask.value = "add new task";
-  localStorage.setItem("task", JSON.stringify(todoList));
-}
+    btnDelete.classList.add("btn-delete");
+    btnDelete.innerText = "удалить";
 
-// перебор всех детей на поиск одинакового текста внутри листа
-function bruteForce() {
-  let childrensList = document.querySelectorAll(".listTasks .item > span");
-  for (let item of childrensList) {
-    if (userText.value.trim() === item.innerText) {
-      return true;
-    }
+    btnEdit.classList.add("btn-edit");
+    btnEdit.innerText = "редактировать";
+
+    btnDelete.onclick = function() {
+      deleteTask(task.id);
+    };
+
+    btnEdit.onclick = function() {
+      editTask(task.id);
+    };
   }
-}
 
-// очистить все поле ul
-clearAll.addEventListener("click", () => {
-  let allChilds = document.querySelectorAll(".listTasks .item");
-
-  for (let i of allChilds) {
-    i.remove();
+  function deleteTask(id) {
+    parentList.querySelector(`#${id}`).remove();
   }
-  localStorage.setItem("task", JSON.stringify(todoList));
-  userText.value = "";
-  clearAll.setAttribute("disabled", "disabled");
-});
+  function editTask(id) {
+    let btnDeletThisLi = document.querySelector(".btn-delete");
+    btnCreate.innerText = "сохранить";
+    btnDeletThisLi.setAttribute("disabled", "disabled");
+    console.log(btnDeletThisLi);
+  }
+};
 
-if (localStorage.getItem("task")) {
-  todoList = JSON.parse(localStorage.getItem("task"));
-  todoList.forEach(task => {
-    createTask(task);
-  });
-}
+// +++++++++++++++++++++++++++++++++++++++++++++++++++
+// НЕ ОЧЕНЬ ХОРОШИЙ ТУДУ ЛИСТ
+// let todoList = localStorage.getItem("task")
+//   ? JSON.parse(localStorage.getItem("task"))
+//   : [];
+
+// console.log(todoList);
+
+// const addTask = document.querySelector(".addTask");
+
+// const listAllTasks = document.querySelector(".listTasks");
+
+// const userText = document.querySelector(".textFieldForTask");
+
+// const clearAll = document.getElementById("clearAll");
+
+// let currentEdit = 0;
+
+// addTask.addEventListener("click", () => {
+//   if (userText.value.trim().length == 0 && userText.value.trim() != null) {
+//     alert("Empty field - this is not a task");
+//   } else if (addTask.classList.contains("saveTask") && bruteForce()) {
+//     alert("ты пидор такое уже есть в списке");
+//   } else if (addTask.classList.contains("saveTask")) {
+//     saveTask(currentEdit);
+//     let btnRemove2 = document.querySelector(`#${currentEdit} > .btn-remove`);
+//     btnRemove2.style.display = "block";
+//   } else if (bruteForce()) {
+//     alert("уже есть такой сука блядь");
+//     userText.value = "";
+//   } else {
+//     const task = {
+//       name: userText.value.trim(), // 1-ое свойство объекта наименование задачи + trim чтобы оно убрало пробелы
+//       check: false, // 2-оe св-во об, для будущего задела на чекнуто ли?
+//       id: `task-${todoList.length}`
+//     }; //создали объект на каждую задачу;
+//     todoList.push(task); // индекс массива приравнивается к объекту
+//     createTask(task);
+//     localStorage.setItem("task", JSON.stringify(todoList[i]));
+//     clearAll.removeAttribute("disabled"); // удаляем атрибут disabled у кнопки, так как есть минимум одно поле, которое можно удалить
+//   }
+// });
+
+// // создаем новый таск
+// function createTask(task) {
+//   const newLi = document.createElement("li");
+//   const buttonRemove = document.createElement("button");
+//   const buttonEdit = document.createElement("button");
+//   const textSpan = document.createElement("span");
+//   const editLink = document.createElement("a");
+//   const removeLink = document.createElement("a");
+//   id = `task-${task.id}`;
+
+//   listAllTasks.classList.add("activeList");
+//   listAllTasks.appendChild(newLi);
+
+//   newLi.setAttribute("id", task.id);
+//   newLi.classList.add("item");
+
+//   newLi.appendChild(textSpan);
+//   // textSpan.innerText = userText.value.trim();
+//   textSpan.innerText = task.name;
+//   textSpan.classList.add("text");
+
+//   buttonRemove.appendChild(removeLink);
+//   buttonRemove.classList.add("btn-remove");
+//   removeLink.innerText = "delete";
+//   removeLink.classList.add("link-remove");
+//   newLi.appendChild(buttonRemove);
+
+//   buttonEdit.appendChild(editLink);
+//   buttonEdit.classList.add("btn-edit");
+//   editLink.innerText = "edit this task";
+//   editLink.classList.add("link-edit");
+//   newLi.appendChild(buttonEdit);
+
+//   localStorage.setItem("task", JSON.stringify(todoList));
+
+//   buttonRemove.addEventListener("click", () => {
+//     deleteTask(task.id);
+//   });
+
+//   buttonEdit.addEventListener("click", () => {
+//     editTask(task.id);
+//   });
+// }
+// // удалить таск
+// function deleteTask(id) {
+//   listAllTasks.querySelector(`#${id}`).remove();
+//   todoList.splice(id, 1);
+//   console.log(id);
+//   localStorage.setItem("task", JSON.stringify(todoList));
+// }
+
+// // редактировать таск
+// function editTask(id) {
+//   let onlyTaskText = document.querySelector(`#${id} > span`).innerText;
+//   let btnRemove = document.querySelector(`#${id} > .btn-remove`);
+
+//   addTask.classList.add("saveTask");
+//   addTask.value = "save this task";
+//   userText.value = onlyTaskText;
+//   btnRemove.style.display = "none";
+//   currentEdit = id;
+//   localStorage.setItem("task", JSON.stringify(todoList));
+// }
+// // сохранить таск
+// function saveTask(id) {
+//   document.querySelector(`#${id} > span`).innerText = userText.value.trim();
+//   addTask.classList.remove("saveTask");
+//   addTask.classList.add("addTask");
+//   addTask.value = "add new task";
+//   localStorage.setItem("task", JSON.stringify(todoList));
+// }
+
+// // перебор всех детей на поиск одинакового текста внутри листа
+// function bruteForce() {
+//   let childrensList = document.querySelectorAll(".listTasks .item > span");
+//   for (let item of childrensList) {
+//     if (userText.value.trim() === item.innerText) {
+//       return true;
+//     }
+//   }
+// }
+
+// // очистить все поле ul
+// clearAll.addEventListener("click", () => {
+//   let allChilds = document.querySelectorAll(".listTasks .item");
+
+//   for (let i of allChilds) {
+//     i.remove();
+//   }
+//   localStorage.setItem("task", JSON.stringify(todoList));
+//   userText.value = "";
+//   clearAll.setAttribute("disabled", "disabled");
+// });
+
+// if (localStorage.getItem("task")) {
+//   todoList = JSON.parse(localStorage.getItem("task"));
+//   todoList.forEach(task => {
+//     createTask(task);
+//   });
+// }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // МЕТОД СОРТ ДЛЯ МАССИВОВ ПЕРЕБОР

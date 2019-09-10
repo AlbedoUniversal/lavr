@@ -9,178 +9,180 @@ html {
   border: 1px solid red;
 }
 
-.content-wrapper {
-  display: flex;
-  justify-content: center;
-  background-color: #414141;
-  height: 100vh;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  .test {
-    .common-heading {
-      color: rgba(255, 255, 255, 0.1);
-      font-size: rem(50);
-      font-family: Nordic;
-      text-transform: uppercase;
-      font-weight: 700;
-      background-image: url(/assets/img/acid.jpg);
-      background-clip: text;
-      animation: acid 40s infinite;
-    }
+// +++++++++++++++++++++++++++++++++++++++++
+// НЕ ОЧЕНЬ ХОРОШИЙ ТУДУ ЛИСТ
+// .content-wrapper {
+//   display: flex;
+//   justify-content: center;
+//   background-color: #414141;
+//   height: 100vh;
+//   width: 100%;
+//   padding: 0px;
+//   margin: 0px;
+//   .test {
+//     .common-heading {
+//       color: rgba(255, 255, 255, 0.1);
+//       font-size: rem(50);
+//       font-family: Nordic;
+//       text-transform: uppercase;
+//       font-weight: 700;
+//       background-image: url(/assets/img/acid.jpg);
+//       background-clip: text;
+//       animation: acid 40s infinite;
+//     }
 
-    .todoList {
-      display: flex;
-      justify-content: center;
-      &-content {
-        .addTask {
-          cursor: pointer;
-          background-color: rgb(12, 17, 34);
-          border: 2px solid gold;
-          font-family: Nordic;
-          font-weight: bold;
-          color: rgb(252, 229, 101);
-          padding: 0.4rem 0.5rem;
-          box-shadow: 0 14px 28px rgba(255, 210, 8, 0.25),
-            0 10px 10px rgba(158, 212, 10, 0.22);
-          margin-left: 5rem;
-          &:hover .todoList-content::before {
-            box-shadow: inset 100px 0 0 0 #e0e0e0;
-          }
-        }
+//     .todoList {
+//       display: flex;
+//       justify-content: center;
+//       &-content {
+//         .addTask {
+//           cursor: pointer;
+//           background-color: rgb(12, 17, 34);
+//           border: 2px solid gold;
+//           font-family: Nordic;
+//           font-weight: bold;
+//           color: rgb(252, 229, 101);
+//           padding: 0.4rem 0.5rem;
+//           box-shadow: 0 14px 28px rgba(255, 210, 8, 0.25),
+//             0 10px 10px rgba(158, 212, 10, 0.22);
+//           margin-left: 5rem;
+//           &:hover .todoList-content::before {
+//             box-shadow: inset 100px 0 0 0 #e0e0e0;
+//           }
+//         }
 
-        .saveTask {
-          cursor: pointer;
-          background-color: rgb(199, 182, 33);
-          border: 2px solid gold;
-          font-family: Nordic;
-          font-weight: bold;
-          color: rgb(12, 94, 216);
-          padding: 0.4rem 0.5rem;
-        }
-        .listTasks {
-          width: 500px;
-          background-image: url(/assets/img/bg1.jpg);
-          background-cize: cover;
+//         .saveTask {
+//           cursor: pointer;
+//           background-color: rgb(199, 182, 33);
+//           border: 2px solid gold;
+//           font-family: Nordic;
+//           font-weight: bold;
+//           color: rgb(12, 94, 216);
+//           padding: 0.4rem 0.5rem;
+//         }
+//         .listTasks {
+//           width: 500px;
+//           background-image: url(/assets/img/bg1.jpg);
+//           background-cize: cover;
 
-          &.activeList {
-            padding: 20px;
-            border: 3px solid orange;
-          }
-          .item {
-            border-bottom: 1px solid #000000;
-            list-style: none;
-            background-image: url(/assets/img/svg2.svg); /* Параметры фона */
-            background-repeat: no-repeat;
-            background-size: 3%;
-            padding-left: 24px; /* Смещаем текст вправо */
-            margin-bottom: 1rem;
-            display: flex;
-            background-position-y: 18px;
-            align-items: center;
-            .text {
-              font-size: 1.5rem;
-              color: #ffffff;
-              margin-right: 2rem;
-            }
-            .btn-edit {
-              cursor: pointer;
-              overflow: hidden;
-              position: relative;
-              background: none;
-              border: none;
-              &:focus {
-                outline: none;
-              }
-              .link-edit {
-                display: block;
-                text-transform: uppercase;
-                line-height: 50px;
-                height: 50px;
-                width: 100%;
-                overflow: hidden;
-                text-align: center;
-                text-decoration: none;
-                font-weight: bold;
-                text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
-                color: rgb(133, 28, 28);
-                background: transparent;
-                transition: all 0.3s ease-in-out;
-                &:hover {
-                  text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
-                  margin-top: -50px;
-                  height: 100px;
-                  background: transparent;
-                  color: black;
-                }
-              }
-            }
-            .btn-remove {
-              cursor: pointer;
-              overflow: hidden;
-              position: relative;
-              background: none;
-              border: none;
-              &:focus {
-                outline: none;
-              }
-              .link-remove {
-                display: block;
-                text-transform: uppercase;
-                line-height: 50px;
-                height: 50px;
-                width: 100%;
-                overflow: hidden;
-                text-align: center;
-                text-decoration: none;
-                font-weight: bold;
-                text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
-                color: rgb(133, 28, 28);
-                background: transparent;
-                transition: all 0.3s ease-in-out;
-                &:hover {
-                  text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
-                  margin-top: -50px;
-                  height: 100px;
-                  background: transparent;
-                  color: black;
-                }
-              }
-            }
-            .removeList {
-              cursor: pointer;
-              position: relative;
-              margin-left: 1rem;
-              width: 10px;
-              height: 10px;
-              &::before {
-                content: "";
-                width: 3px;
-                height: 20px;
-                position: absolute;
-                transform: rotate(45deg);
-                background-color: red;
-                border-radius: 50%;
-              }
-              &::after {
-                content: "";
-                width: 3px;
-                height: 17px;
-                position: absolute;
-                transform: rotate(-45deg);
-                background-color: red;
-                border-radius: 50%;
-              }
-            }
-            .edit {
-              margin-left: 1rem;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+//           &.activeList {
+//             padding: 20px;
+//             border: 3px solid orange;
+//           }
+//           .item {
+//             border-bottom: 1px solid #000000;
+//             list-style: none;
+//             background-image: url(/assets/img/svg2.svg); /* Параметры фона */
+//             background-repeat: no-repeat;
+//             background-size: 3%;
+//             padding-left: 24px; /* Смещаем текст вправо */
+//             margin-bottom: 1rem;
+//             display: flex;
+//             background-position-y: 18px;
+//             align-items: center;
+//             .text {
+//               font-size: 1.5rem;
+//               color: #ffffff;
+//               margin-right: 2rem;
+//             }
+//             .btn-edit {
+//               cursor: pointer;
+//               overflow: hidden;
+//               position: relative;
+//               background: none;
+//               border: none;
+//               &:focus {
+//                 outline: none;
+//               }
+//               .link-edit {
+//                 display: block;
+//                 text-transform: uppercase;
+//                 line-height: 50px;
+//                 height: 50px;
+//                 width: 100%;
+//                 overflow: hidden;
+//                 text-align: center;
+//                 text-decoration: none;
+//                 font-weight: bold;
+//                 text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
+//                 color: rgb(133, 28, 28);
+//                 background: transparent;
+//                 transition: all 0.3s ease-in-out;
+//                 &:hover {
+//                   text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
+//                   margin-top: -50px;
+//                   height: 100px;
+//                   background: transparent;
+//                   color: black;
+//                 }
+//               }
+//             }
+//             .btn-remove {
+//               cursor: pointer;
+//               overflow: hidden;
+//               position: relative;
+//               background: none;
+//               border: none;
+//               &:focus {
+//                 outline: none;
+//               }
+//               .link-remove {
+//                 display: block;
+//                 text-transform: uppercase;
+//                 line-height: 50px;
+//                 height: 50px;
+//                 width: 100%;
+//                 overflow: hidden;
+//                 text-align: center;
+//                 text-decoration: none;
+//                 font-weight: bold;
+//                 text-shadow: 0 100px 0 #fff, 1px 76px 10px #000;
+//                 color: rgb(133, 28, 28);
+//                 background: transparent;
+//                 transition: all 0.3s ease-in-out;
+//                 &:hover {
+//                   text-shadow: 0 50px 0 #fff, 1px 51px 20px #fff;
+//                   margin-top: -50px;
+//                   height: 100px;
+//                   background: transparent;
+//                   color: black;
+//                 }
+//               }
+//             }
+//             .removeList {
+//               cursor: pointer;
+//               position: relative;
+//               margin-left: 1rem;
+//               width: 10px;
+//               height: 10px;
+//               &::before {
+//                 content: "";
+//                 width: 3px;
+//                 height: 20px;
+//                 position: absolute;
+//                 transform: rotate(45deg);
+//                 background-color: red;
+//                 border-radius: 50%;
+//               }
+//               &::after {
+//                 content: "";
+//                 width: 3px;
+//                 height: 17px;
+//                 position: absolute;
+//                 transform: rotate(-45deg);
+//                 background-color: red;
+//                 border-radius: 50%;
+//               }
+//             }
+//             .edit {
+//               margin-left: 1rem;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 // ИГРА, ГДЕ КАРТИНКИ РАЗМЫТЫЕ, А ПО НАЖАТИЮ ЧЕТКИЕ И НАОБОРОТ
 // .photo {
