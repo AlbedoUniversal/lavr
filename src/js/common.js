@@ -11,13 +11,13 @@ window.onload = () => {
   btnCreate.addEventListener("click", function() {
     if (btnCreate.classList.contains("btnCreate")) {
       createTask();
+      localStorage.setItem("task", JSON.stringify(todoListArray));
       taskText.value = "";
       btnClearAll.removeAttribute("disabled");
     } else {
       saveTask(current);
       taskText.value = "";
     }
-    localStorage.setItem("task", JSON.stringify(todoListArray));
   });
 
   btnClearAll.addEventListener("click", function() {
@@ -25,9 +25,22 @@ window.onload = () => {
     let allLi = document.querySelectorAll(".list .list-item");
     for (let allchildLi of allLi) {
       allchildLi.remove();
+      todoListArray = [];
     }
-    // localStorage.setItem("task", JSON.stringify(todoListArray));
+    localStorage.setItem("task", JSON.stringify(todoListArray));
   });
+
+  function findTask(id) {
+    let taskIndex;
+
+    todoListArray.forEach((task, index) => {
+      if (task.id === id) {
+        taskIndex = index;
+      }
+    });
+
+    return taskIndex;
+  }
 
   function createTask() {
     const newLi = document.createElement("li");
@@ -67,14 +80,19 @@ window.onload = () => {
 
     btnEdit.onclick = function() {
       editTask(task.id);
+      todoListArray.splice(0, 1);
       // localStorage.setItem("task", JSON.stringify(todoListArray));
     };
     // localStorage.setItem("task", JSON.stringify(todoListArray));
+    return task;
   }
 
   function deleteTask(id) {
+    const index = findTask(id);
     parentList.querySelector(`#${id}`).remove();
-    // localStorage.setItem("task", JSON.stringify(todoListArray));
+    todoListArray.splice(index, 1);
+
+    localStorage.setItem("task", JSON.stringify(todoListArray));
   }
   function editTask(id) {
     let btnDeletThisLi = document.querySelector(`#${id} > .btn-delete`);
