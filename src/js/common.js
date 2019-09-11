@@ -9,8 +9,10 @@ window.onload = () => {
   btnCreate.addEventListener("click", function() {
     if (btnCreate.classList.contains("btnCreate")) {
       createTask();
+      taskText.value = "";
     } else {
       saveTask(current);
+      taskText.value = "";
     }
   });
 
@@ -47,9 +49,6 @@ window.onload = () => {
     btnEdit.onclick = function() {
       editTask(task.id);
     };
-
-    // if (btnCreate.classList.contains("saveActive")) {
-    // }
   }
 
   function deleteTask(id) {
@@ -66,12 +65,6 @@ window.onload = () => {
     btnCreate.classList.remove("btnCreate");
     btnCreate.classList.add("saveActive");
     btnDeletThisLi.setAttribute("disabled", "disabled");
-
-    console.log(btnEdit);
-
-    // for (let i = 0; i < btnEdit.length; i++) {
-    //   this.setAttribute("disabled", "disabled");
-    // }
   }
 
   function saveTask(id) {
