@@ -1,18 +1,17 @@
 window.onload = () => {
   const btnCreate = document.querySelector(".btnCreate");
-  const btnSave = document.querySelector('.saveActive');
   const btnClearAll = document.querySelector(".clearAll");
   const taskText = document.querySelector(".userText");
   const parentList = document.querySelector(".list");
   let todoListArray = [];
   let current = 0;
 
-  btnCreate.addEventListener("click", function () {
-    createTask();
-  });
-
-  btnSave.addEventListener("click", function () {
-    saveTask();
+  btnCreate.addEventListener("click", function() {
+    if (btnCreate.classList.contains("btnCreate")) {
+      createTask();
+    } else {
+      saveTask(current);
+    }
   });
 
   function createTask() {
@@ -30,44 +29,64 @@ window.onload = () => {
     parentList.appendChild(newLi);
     newLi.setAttribute("id", task.id);
     newLi.appendChild(newliText);
-    newLi.appendChild(btnDelete);
-    newLi.appendChild(btnEdit);
+    newliText.classList.add("text");
     newliText.innerText = task.name;
 
+    newLi.appendChild(btnDelete);
     btnDelete.classList.add("btn-delete");
     btnDelete.innerText = "удалить";
 
+    newLi.appendChild(btnEdit);
     btnEdit.classList.add("btn-edit");
     btnEdit.innerText = "редактировать";
 
-    btnDelete.onclick = function () {
+    btnDelete.onclick = function() {
       deleteTask(task.id);
     };
 
-    btnEdit.onclick = function () {
+    btnEdit.onclick = function() {
       editTask(task.id);
     };
 
-    if (btnCreate.classList.contains('saveActive')) {
-      console.log('hui');
-    }
+    // if (btnCreate.classList.contains("saveActive")) {
+    // }
   }
 
   function deleteTask(id) {
     parentList.querySelector(`#${id}`).remove();
   }
   function editTask(id) {
-    let btnDeletThisLi = document.querySelector(".btn-delete");
+    let btnDeletThisLi = document.querySelector(`#${id} > .btn-delete`);
+    let textEditTask = document.querySelector(`#${id} > .text`).innerText;
+
+    taskText.value = textEditTask;
+    current = id;
+
     btnCreate.innerText = "сохранить";
-    btnCreate.classList.remove('btnCreate');
-    btnCreate.classList.add('saveActive');
+    btnCreate.classList.remove("btnCreate");
+    btnCreate.classList.add("saveActive");
     btnDeletThisLi.setAttribute("disabled", "disabled");
+
+    console.log(btnEdit);
+
+    // for (let i = 0; i < btnEdit.length; i++) {
+    //   this.setAttribute("disabled", "disabled");
+    // }
   }
 
-  function saveTask() {
-    btnSave.innerText = 'добавить';
-    btnSave.classList.remove('saveActive');
-    btnSave.classList.add('btnCreate');
+  function saveTask(id) {
+    let btnSave = document.querySelector(".saveActive");
+    let savesText = (document.querySelector(`#${id} > .text`).innerText =
+      taskText.value);
+    let btnDelete = document.querySelector(`#${id} > .btn-delete`);
+
+    btnDelete.removeAttribute("disabled");
+
+    current = todoListArray.length - 1;
+
+    btnSave.innerText = "добавить";
+    btnSave.classList.remove("saveActive");
+    btnSave.classList.add("btnCreate");
   }
 };
 
