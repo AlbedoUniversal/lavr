@@ -8,18 +8,20 @@ window.onload = () => {
     : [];
   let current = 0;
 
+  // создать или сохранить таск
   btnCreate.addEventListener("click", function() {
     if (btnCreate.classList.contains("btnCreate")) {
       createTask();
-      localStorage.setItem("task", JSON.stringify(todoListArray));
       taskText.value = "";
       btnClearAll.removeAttribute("disabled");
     } else {
       saveTask(current);
       taskText.value = "";
     }
+    localStorage.setItem("task", JSON.stringify(todoListArray));
   });
 
+  // удалить все
   btnClearAll.addEventListener("click", function() {
     this.setAttribute("disabled", "disabled");
     let allLi = document.querySelectorAll(".list .list-item");
@@ -30,18 +32,20 @@ window.onload = () => {
     localStorage.setItem("task", JSON.stringify(todoListArray));
   });
 
+  // нужный индекс массива
   function findTask(id) {
     let taskIndex;
 
     todoListArray.forEach((task, index) => {
       if (task.id === id) {
         taskIndex = index;
+        console.log(taskIndex);
       }
     });
-
     return taskIndex;
   }
 
+  // ф создания таска
   function createTask() {
     const newLi = document.createElement("li");
     const newliText = document.createElement("span");
@@ -75,18 +79,16 @@ window.onload = () => {
       if (parentList.childNodes.length == 0) {
         btnClearAll.setAttribute("disabled", "disabled");
       }
-      // localStorage.setItem("task", JSON.stringify(todoListArray));
+      // localStorage.setItem("task", JSON.stringify(todoListArray)); НЕ НУЖЕН
     };
 
     btnEdit.onclick = function() {
       editTask(task.id);
-      todoListArray.splice(0, 1);
-      // localStorage.setItem("task", JSON.stringify(todoListArray));
     };
-    // localStorage.setItem("task", JSON.stringify(todoListArray));
     return task;
   }
 
+  // ф удаления таска
   function deleteTask(id) {
     const index = findTask(id);
     parentList.querySelector(`#${id}`).remove();
@@ -94,6 +96,8 @@ window.onload = () => {
 
     localStorage.setItem("task", JSON.stringify(todoListArray));
   }
+
+  // ф редактирования таска
   function editTask(id) {
     let btnDeletThisLi = document.querySelector(`#${id} > .btn-delete`);
     let textEditTask = document.querySelector(`#${id} > .text`).innerText;
@@ -105,9 +109,11 @@ window.onload = () => {
     btnCreate.classList.remove("btnCreate");
     btnCreate.classList.add("saveActive");
     btnDeletThisLi.setAttribute("disabled", "disabled");
-    // localStorage.setItem("task", JSON.stringify(todoListArray));
+
+    localStorage.setItem("task", JSON.stringify(todoListArray));
   }
 
+  // ф сохранения таска
   function saveTask(id) {
     let btnSave = document.querySelector(".saveActive");
     let savesText = (document.querySelector(`#${id} > .text`).innerText =
@@ -121,7 +127,8 @@ window.onload = () => {
     btnSave.innerText = "добавить";
     btnSave.classList.remove("saveActive");
     btnSave.classList.add("btnCreate");
-    // localStorage.setItem("task", JSON.stringify(todoListArray));
+
+    localStorage.setItem("task", JSON.stringify(todoListArray));
   }
 
   if (localStorage.getItem("task")) {
