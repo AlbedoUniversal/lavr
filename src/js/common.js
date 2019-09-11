@@ -27,8 +27,8 @@ window.onload = () => {
     let allLi = document.querySelectorAll(".list .list-item");
     for (let allchildLi of allLi) {
       allchildLi.remove();
-      todoListArray = [];
     }
+    todoListArray = [];
     localStorage.setItem("task", JSON.stringify(todoListArray));
   });
 
@@ -108,7 +108,6 @@ window.onload = () => {
     btnCreate.innerText = "сохранить";
     btnCreate.classList.remove("btnCreate");
     btnCreate.classList.add("saveActive");
-    btnDeletThisLi.setAttribute("disabled", "disabled");
 
     localStorage.setItem("task", JSON.stringify(todoListArray));
   }
@@ -135,6 +134,7 @@ window.onload = () => {
     todoListArray = JSON.parse(localStorage.getItem("task"));
     todoListArray.forEach(task => {
       createTask(task);
+      console.log(task);
     });
   }
 };
