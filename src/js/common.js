@@ -3,17 +3,30 @@ window.onload = () => {
   const btnClearAll = document.querySelector(".clearAll");
   const taskText = document.querySelector(".userText");
   const parentList = document.querySelector(".list");
-  let todoListArray = [];
+  let todoListArray = localStorage.getItem("task")
+    ? JSON.parse(localStorage.getItem("task"))
+    : [];
   let current = 0;
 
   btnCreate.addEventListener("click", function() {
     if (btnCreate.classList.contains("btnCreate")) {
       createTask();
       taskText.value = "";
+      btnClearAll.removeAttribute("disabled");
     } else {
       saveTask(current);
       taskText.value = "";
     }
+    localStorage.setItem("task", JSON.stringify(todoListArray));
+  });
+
+  btnClearAll.addEventListener("click", function() {
+    this.setAttribute("disabled", "disabled");
+    let allLi = document.querySelectorAll(".list .list-item");
+    for (let allchildLi of allLi) {
+      allchildLi.remove();
+    }
+    // localStorage.setItem("task", JSON.stringify(todoListArray));
   });
 
   function createTask() {
@@ -30,6 +43,7 @@ window.onload = () => {
 
     parentList.appendChild(newLi);
     newLi.setAttribute("id", task.id);
+    newLi.classList.add("list-item");
     newLi.appendChild(newliText);
     newliText.classList.add("text");
     newliText.innerText = task.name;
@@ -44,15 +58,23 @@ window.onload = () => {
 
     btnDelete.onclick = function() {
       deleteTask(task.id);
+
+      if (parentList.childNodes.length == 0) {
+        btnClearAll.setAttribute("disabled", "disabled");
+      }
+      // localStorage.setItem("task", JSON.stringify(todoListArray));
     };
 
     btnEdit.onclick = function() {
       editTask(task.id);
+      // localStorage.setItem("task", JSON.stringify(todoListArray));
     };
+    // localStorage.setItem("task", JSON.stringify(todoListArray));
   }
 
   function deleteTask(id) {
     parentList.querySelector(`#${id}`).remove();
+    // localStorage.setItem("task", JSON.stringify(todoListArray));
   }
   function editTask(id) {
     let btnDeletThisLi = document.querySelector(`#${id} > .btn-delete`);
@@ -65,6 +87,7 @@ window.onload = () => {
     btnCreate.classList.remove("btnCreate");
     btnCreate.classList.add("saveActive");
     btnDeletThisLi.setAttribute("disabled", "disabled");
+    // localStorage.setItem("task", JSON.stringify(todoListArray));
   }
 
   function saveTask(id) {
@@ -80,6 +103,14 @@ window.onload = () => {
     btnSave.innerText = "добавить";
     btnSave.classList.remove("saveActive");
     btnSave.classList.add("btnCreate");
+    // localStorage.setItem("task", JSON.stringify(todoListArray));
+  }
+
+  if (localStorage.getItem("task")) {
+    todoListArray = JSON.parse(localStorage.getItem("task"));
+    todoListArray.forEach(task => {
+      createTask(task);
+    });
   }
 };
 
