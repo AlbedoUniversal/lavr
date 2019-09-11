@@ -8,6 +8,15 @@ window.onload = () => {
     : [];
   let current = 0;
 
+  // Проверяем localStorage и при берем данные оттуда
+  if (localStorage.getItem("task")) {
+    todoListArray = JSON.parse(localStorage.getItem("task"));
+    todoListArray.forEach(task => {
+      createTask(task);
+      console.log(task);
+    });
+  }
+
   // создать или сохранить таск
   btnCreate.addEventListener("click", function() {
     if (btnCreate.classList.contains("btnCreate")) {
@@ -46,16 +55,25 @@ window.onload = () => {
   }
 
   // ф создания таска
-  function createTask() {
+  function createTask(t = null) {
     const newLi = document.createElement("li");
     const newliText = document.createElement("span");
     const btnDelete = document.createElement("button");
     const btnEdit = document.createElement("button");
-    let task = {
-      name: taskText.value.trim(),
-      check: false,
-      id: `task-${todoListArray.length}`
-    };
+
+    // Создаем пустую переменную
+    let task;
+    // Проверяем, приходит ли аргумент в функцию (другими словами, есть ли что-то в localStorage)
+    if(t) {
+      task = t
+    } else {
+      task = {
+        id: `task-${todoListArray.length}`,
+        name: taskText.value.trim(),
+        check: false
+      };
+    }
+    
     todoListArray.push(task);
 
     parentList.appendChild(newLi);
@@ -128,14 +146,6 @@ window.onload = () => {
     btnSave.classList.add("btnCreate");
 
     localStorage.setItem("task", JSON.stringify(todoListArray));
-  }
-
-  if (localStorage.getItem("task")) {
-    todoListArray = JSON.parse(localStorage.getItem("task"));
-    todoListArray.forEach(task => {
-      createTask(task);
-      console.log(task);
-    });
   }
 };
 
